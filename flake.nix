@@ -37,6 +37,7 @@
               pkgs.nixfmt
               pkgs.prek
               pkgs.statix
+              pkgs.taplo
               pkgs.tree
               pkgs.uv
               pkgs.watchexec

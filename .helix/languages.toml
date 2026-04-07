@@ -1,4 +1,15 @@
 [[language]]
+name = "toml"
+language-servers = ["taplo"]
+
+[language-server.taplo]
+command = "taplo"
+args = ["lsp", "stdio"]
+
+[language-server.taplo.config.schema]
+associations = { "prek\\.toml$" = "https://www.schemastore.org/prek.json" }
+
+[[language]]
 name = "python"
 language-servers = ["pylsp", "jedi", "ruff", "ty"]
 formatter = { command = ".venv/bin/ruff", args = ["format", "-"] }
