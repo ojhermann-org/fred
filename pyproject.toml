@@ -5,7 +5,9 @@ description = "A Python library for the FRED API"
 readme = "README.md"
 authors = [{ name = "Otto Hermann", email = "ojhermann@gmail.com" }]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pydantic>=2.12.5",
+]
 
 [build-system]
 requires = ["uv_build>=0.10.12,<0.12.0"]
@@ -20,7 +22,7 @@ dev = [
   "ty>=0.0.24",
 ]
 
-[tool.pytest.ini_options]
+[tool.pytest]
 addopts = ["--strict-markers"]
 markers = ["unit_test: tests a specific and discrete element for correctness"]
 pythonpath = ["src"]
