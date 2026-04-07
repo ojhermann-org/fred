@@ -1,0 +1,31 @@
+name: Update flake.lock
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - name: Update flake.lock
+        run: nix flake update
+      - name: Open PR if flake.lock changed
+        run: |
+          if git diff --exit-code flake.lock; then
+            echo "flake.lock unchanged, nothing to do"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git checkout -b update-flake-lock-$(date +%Y%m%d)
+            git add flake.lock
+            git commit -m "chore: update flake.lock"
+            gh pr create \
+              --title "chore: update flake.lock" \
+              --body "Automated daily flake.lock update."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
