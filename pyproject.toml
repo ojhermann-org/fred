@@ -1,0 +1,39 @@
+[project]
+name = "fred"
+version = "0.1.0"
+description = "A Python library for the FRED API"
+readme = "README.md"
+authors = [{ name = "Otto Hermann", email = "ojhermann@gmail.com" }]
+requires-python = ">=3.13"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.10.12,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+  "jedi-language-server>=0.46.0",
+  "pytest>=9.0.2",
+  "python-lsp-server>=1.14.0",
+  "ruff>=0.15.7",
+  "ty>=0.0.24",
+]
+
+[tool.pytest.ini_options]
+addopts = ["--strict-markers"]
+markers = ["unit_test: tests a specific and discrete element for correctness"]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff.lint]
+select = ["ANN", "I"]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.uv.build-backend]
+module-name = "fred"
