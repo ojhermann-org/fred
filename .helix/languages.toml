@@ -1,6 +1,3 @@
-[language-server.taplo.config.schema]
-associations = { "prek\\.toml$" = "https://www.schemastore.org/prek.json" }
-
 [[language]]
 name = "python"
 language-servers = ["pylsp", "jedi", "ruff", "ty"]
