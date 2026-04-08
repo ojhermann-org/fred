@@ -31,7 +31,6 @@ dist/
 
 # OpenTofu
 tofu/.terraform/
-tofu/.terraform.lock.hcl
 
 # Claude Code
 .claude/projects/
