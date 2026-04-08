@@ -13,10 +13,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "ojhermann-tofu-state"
+    bucket         = "ojhermann-tofu-state-dev"
     key            = "fred/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "ojhermann-tofu-locks"
+    dynamodb_table = "ojhermann-tofu-locks-dev"
     encrypt        = true
   }
 }
