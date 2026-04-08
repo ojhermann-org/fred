@@ -4,8 +4,8 @@ from pydantic import ValidationError
 import pytest
 
 from fred.v1.file_type import FileType
-from fred.v1.order_by import OrderBy
 from fred.v1.sort_order import SortOrder
+from fred.v1.sources.order_by import OrderBy
 from fred.v1.sources.parameters import Parameters
 
 VALID_KEY = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"

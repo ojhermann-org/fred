@@ -1,8 +1,8 @@
 from pydantic import ValidationError
 import pytest
 
-from fred.v1.order_by import OrderBy
 from fred.v1.sort_order import SortOrder
+from fred.v1.sources.order_by import OrderBy
 from fred.v1.sources.response import Response, Source
 
 # --- fixtures ---
