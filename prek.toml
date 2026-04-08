@@ -20,13 +20,34 @@ hooks = [
 repo = "local"
 hooks = [
   { id = "prek-validate-config", name = "prek validate-config", language = "system", entry = "prek validate-config", pass_filenames = false, files = "prek\\.toml$" },
-  { id = "nix-flake-check", name = "nix flake check", language = "system", entry = "nix flake check", pass_filenames = false, types = ["nix"] },
-  { id = "nixfmt", name = "nixfmt", language = "system", entry = "nixfmt", types = ["nix"] },
-  { id = "statix", name = "statix", language = "system", entry = "statix check", pass_filenames = false, types = ["nix"] },
-  { id = "deadnix", name = "deadnix", language = "system", entry = "deadnix --fail", types = ["nix"] },
-  { id = "ruff-check", name = "ruff check", language = "system", entry = "ruff check --fix", types = ["python"] },
-  { id = "ruff-format", name = "ruff format", language = "system", entry = "ruff format", types = ["python"] },
-  { id = "ty-check", name = "ty check", language = "system", entry = "ty check", pass_filenames = false, types = ["python"] },
-  { id = "pytest-unit", name = "pytest unit tests", language = "system", entry = "pytest -m unit_test", pass_filenames = false, types = ["python"] },
-  { id = "uv-sync", name = "uv sync", language = "system", entry = "uv sync", pass_filenames = false, stages = ["pre-push"] },
+  { id = "nix-flake-check", name = "nix flake check", language = "system", entry = "nix flake check", pass_filenames = false, types = [
+    "nix",
+  ] },
+  { id = "nixfmt", name = "nixfmt", language = "system", entry = "nixfmt", types = [
+    "nix",
+  ] },
+  { id = "statix", name = "statix", language = "system", entry = "statix check", pass_filenames = false, types = [
+    "nix",
+  ] },
+  { id = "deadnix", name = "deadnix", language = "system", entry = "deadnix --fail", types = [
+    "nix",
+  ] },
+  { id = "ruff-check", name = "ruff check", language = "system", entry = "ruff check --fix", types = [
+    "python",
+  ] },
+  { id = "ruff-format", name = "ruff format", language = "system", entry = "ruff format", types = [
+    "python",
+  ] },
+  { id = "ty-check", name = "ty check", language = "system", entry = "ty check", pass_filenames = false, types = [
+    "python",
+  ] },
+  { id = "pytest-unit", name = "pytest unit tests", language = "system", entry = "pytest -m unit_test", pass_filenames = false, types = [
+    "python",
+  ] },
+  { id = "pytest-contract", name = "pytest contract tests", language = "system", entry = "pytest -m contract_test", pass_filenames = false, types = [
+    "python",
+  ] },
+  { id = "uv-sync", name = "uv sync", language = "system", entry = "uv sync", pass_filenames = false, stages = [
+    "pre-push",
+  ] },
 ]
