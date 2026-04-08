@@ -35,6 +35,7 @@
               pkgs.git
               pkgs.helix
               pkgs.nixfmt
+              pkgs.opentofu
               pkgs.prek
               pkgs.statix
               pkgs.taplo
