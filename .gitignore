@@ -29,5 +29,8 @@ dist/
 .pyre/
 .pytype/
 
+# OpenTofu
+tofu/.terraform/
+
 # Claude Code
 .claude/projects/
