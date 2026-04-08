@@ -24,6 +24,7 @@ dev = [
 addopts = ["--strict-markers"]
 markers = [
   "contract_test: tests that something adheres to a contract",
+  "integration_test: tests against the live FRED API; requires FRED_API_KEY to be set",
   "smoke_test: tests that a component produces a valid result end-to-end with minimal configuration",
   "unit_test: tests a specific and discrete element for correctness",
 ]
