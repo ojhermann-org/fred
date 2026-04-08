@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
-from fred.v1.order_by import OrderBy
 from fred.v1.realtime import Realtime
 from fred.v1.sort_order import SortOrder
 from fred.v1.source.response import Response as Source
+from fred.v1.sources.order_by import OrderBy
 
 
 class Response(BaseModel):

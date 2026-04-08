@@ -4,9 +4,9 @@ from pydantic import BaseModel, Field
 
 from fred.v1.api_key import ApiKey
 from fred.v1.file_type import FileType
-from fred.v1.order_by import OrderBy
 from fred.v1.realtime import Realtime
 from fred.v1.sort_order import SortOrder
+from fred.v1.sources.order_by import OrderBy
 
 
 class Parameters(BaseModel):
