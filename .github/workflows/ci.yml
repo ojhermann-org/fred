@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v16
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
       - name: Run prek
         run: nix develop --command bash -c "uv sync && source .venv/bin/activate && prek run --all-files"
 
