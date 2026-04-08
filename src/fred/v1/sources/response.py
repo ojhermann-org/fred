@@ -3,15 +3,7 @@ from pydantic import BaseModel
 from fred.v1.order_by import OrderBy
 from fred.v1.realtime import Realtime
 from fred.v1.sort_order import SortOrder
-
-
-class Source(BaseModel):
-    id: int
-    realtime_start: Realtime
-    realtime_end: Realtime
-    name: str
-    link: str | None = None
-    notes: str | None = None
+from fred.v1.source.response import Response as Source
 
 
 class Response(BaseModel):
