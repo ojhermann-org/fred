@@ -1,5 +1,10 @@
-data "github_user" "ojhermann" {
-  username = "ojhermann"
+data "github_organization_teams" "all" {}
+
+locals {
+  admins_team_id = one([
+    for team in data.github_organization_teams.all.teams : team.id
+    if team.slug == "admins"
+  ])
 }
 
 resource "github_repository_environment" "integration" {
@@ -7,7 +12,7 @@ resource "github_repository_environment" "integration" {
   repository  = "fred"
 
   reviewers {
-    users = [data.github_user.ojhermann.id]
+    teams = [local.admins_team_id]
   }
 }
 
