@@ -15,12 +15,12 @@ Dependencies
 graph TD
     ApiKey
     FileType
-    OrderBy
     Realtime
     SortOrder
 
     source_Response["source/Response"]
     source_Parameters["source/Parameters"]
+    sources_OrderBy["sources/OrderBy"]
     sources_Response["sources/Response"]
     sources_Parameters["sources/Parameters"]
 
@@ -31,13 +31,13 @@ graph TD
     source_Parameters --> Realtime
 
     sources_Response --> Realtime
-    sources_Response --> OrderBy
+    sources_Response --> sources_OrderBy
     sources_Response --> SortOrder
     sources_Response --> source_Response
 
     sources_Parameters --> ApiKey
     sources_Parameters --> FileType
     sources_Parameters --> Realtime
-    sources_Parameters --> OrderBy
+    sources_Parameters --> sources_OrderBy
     sources_Parameters --> SortOrder
 ```
