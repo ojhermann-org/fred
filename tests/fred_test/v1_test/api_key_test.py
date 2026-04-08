@@ -1,9 +1,9 @@
 from pydantic import TypeAdapter, ValidationError
 import pytest
 
-from fred.v1.api_key import API_KEY
+from fred.v1.api_key import ApiKey
 
-_adapter = TypeAdapter(API_KEY)
+_adapter = TypeAdapter(ApiKey)
 
 VALID_KEY = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"  # 32 lowercase alphanumeric chars
 
