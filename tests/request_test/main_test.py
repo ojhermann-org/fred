@@ -1,7 +1,7 @@
 import pytest
 
 from request.enum.endpoint import Endpoint
-from request.main import RequestBuilder
+from request.implementation.request_builder import RequestBuilder
 
 VALID_KEY = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
 VALID_SOURCE_ID = 1
