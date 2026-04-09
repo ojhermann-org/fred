@@ -49,7 +49,7 @@ def test_file_type_accepts_json() -> None:
 @pytest.mark.unit_test
 def test_file_type_raises_on_invalid() -> None:
     with pytest.raises(ValidationError):
-        Parameters(api_key=VALID_KEY, file_type="csv")  # type: ignore[arg-type]  # ty:ignore[invalid-argument-type]
+        Parameters(api_key=VALID_KEY, file_type="csv")  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
 
 # realtime_start
@@ -180,7 +180,7 @@ def test_order_by_accepts_all_values(value: OrderBy) -> None:
 @pytest.mark.unit_test
 def test_order_by_raises_on_invalid() -> None:
     with pytest.raises(ValidationError):
-        Parameters(api_key=VALID_KEY, order_by="invalid")  # type: ignore[arg-type]  # ty:ignore[invalid-argument-type]
+        Parameters(api_key=VALID_KEY, order_by="invalid")  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
 
 # sort_order
@@ -203,4 +203,4 @@ def test_sort_order_accepts_all_values(value: SortOrder) -> None:
 @pytest.mark.unit_test
 def test_sort_order_raises_on_invalid() -> None:
     with pytest.raises(ValidationError):
-        Parameters(api_key=VALID_KEY, sort_order="invalid")  # type: ignore[arg-type]  # ty:ignore[invalid-argument-type]
+        Parameters(api_key=VALID_KEY, sort_order="invalid")  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]

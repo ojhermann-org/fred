@@ -80,7 +80,7 @@ def test_file_type_accepts_json() -> None:
 @pytest.mark.unit_test
 def test_file_type_raises_on_invalid() -> None:
     with pytest.raises(ValidationError):
-        Parameters(api_key=VALID_KEY, source_id=VALID_SOURCE_ID, file_type="csv")  # type: ignore[arg-type]  # ty:ignore[invalid-argument-type]
+        Parameters(api_key=VALID_KEY, source_id=VALID_SOURCE_ID, file_type="csv")  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
 
 
 # realtime_start

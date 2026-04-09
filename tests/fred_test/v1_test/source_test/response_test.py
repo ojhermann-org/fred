@@ -19,28 +19,28 @@ VALID_RESPONSE = {
 def test_requires_id() -> None:
     data = {k: v for k, v in VALID_RESPONSE.items() if k != "id"}
     with pytest.raises(ValidationError):
-        Response(**data)  # ty:ignore[invalid-argument-type]
+        Response(**data)  # ty: ignore[invalid-argument-type]
 
 
 @pytest.mark.unit_test
 def test_requires_realtime_start() -> None:
     data = {k: v for k, v in VALID_RESPONSE.items() if k != "realtime_start"}
     with pytest.raises(ValidationError):
-        Response(**data)  # ty:ignore[invalid-argument-type]
+        Response(**data)  # ty: ignore[invalid-argument-type]
 
 
 @pytest.mark.unit_test
 def test_requires_realtime_end() -> None:
     data = {k: v for k, v in VALID_RESPONSE.items() if k != "realtime_end"}
     with pytest.raises(ValidationError):
-        Response(**data)  # ty:ignore[invalid-argument-type]
+        Response(**data)  # ty: ignore[invalid-argument-type]
 
 
 @pytest.mark.unit_test
 def test_requires_name() -> None:
     data = {k: v for k, v in VALID_RESPONSE.items() if k != "name"}
     with pytest.raises(ValidationError):
-        Response(**data)  # ty:ignore[invalid-argument-type]
+        Response(**data)  # ty: ignore[invalid-argument-type]
 
 
 # optional fields
@@ -49,17 +49,17 @@ def test_requires_name() -> None:
 @pytest.mark.unit_test
 def test_link_is_optional() -> None:
     data = {k: v for k, v in VALID_RESPONSE.items() if k != "link"}
-    assert Response(**data).link is None  # ty:ignore[invalid-argument-type]
+    assert Response(**data).link is None  # ty: ignore[invalid-argument-type]
 
 
 @pytest.mark.unit_test
 def test_notes_is_optional() -> None:
-    assert Response(**VALID_RESPONSE).notes is None  # ty:ignore[invalid-argument-type]
+    assert Response(**VALID_RESPONSE).notes is None  # ty: ignore[invalid-argument-type]
 
 
 @pytest.mark.unit_test
 def test_accepts_notes() -> None:
-    response = Response(**VALID_RESPONSE, notes="Some notes.")  # ty:ignore[invalid-argument-type]
+    response = Response(**VALID_RESPONSE, notes="Some notes.")  # ty: ignore[invalid-argument-type]
     assert response.notes == "Some notes."
 
 
@@ -68,7 +68,7 @@ def test_accepts_notes() -> None:
 
 @pytest.mark.contract_test
 def test_parses_source_with_link() -> None:
-    response = Response(**VALID_RESPONSE)  # ty:ignore[invalid-argument-type]
+    response = Response(**VALID_RESPONSE)  # ty: ignore[invalid-argument-type]
     assert response.id == 1
     assert response.name == "Board of Governors of the Federal Reserve System"
     assert response.link == "http://www.federalreserve.gov/"

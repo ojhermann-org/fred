@@ -1,15 +1,9 @@
-from enum import StrEnum
 from typing import Protocol
 
-
-class Endpoint(StrEnum): ...
+from request.enum.endpoint import Endpoint
 
 
 class Request(Protocol):
     def endpoint(self) -> Endpoint: ...
 
     def parameters(self) -> dict[str, str]: ...
-
-
-class Builder(Protocol):
-    def build(self) -> Request: ...

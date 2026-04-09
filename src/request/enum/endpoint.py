@@ -1,10 +1,6 @@
 from enum import StrEnum
 
 
-# todo unit tests
-# - *args is None returns base
-# - *args is singleton returns {base}/{singleton}
-# - *args is "a", "b", "c" returns {baes}/a/b/c
 def combine(base: str, *args: str | None) -> str:
     return base + "".join(["/" + a for a in args if a is not None])
 
@@ -12,8 +8,6 @@ def combine(base: str, *args: str | None) -> str:
 ENDPOINT_BASE: str = "https://api.stlouisfed.org/fred"
 
 
-# todo unit tests
-# - make sure each value is unique
 class Base(StrEnum):
     category = combine(ENDPOINT_BASE, "category")
     release = combine(ENDPOINT_BASE, "release")
