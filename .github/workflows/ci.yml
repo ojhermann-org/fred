@@ -23,8 +23,12 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v16
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
@@ -33,7 +37,7 @@ jobs:
         run: |
           echo "FRED_API_KEY=$(aws secretsmanager get-secret-value --secret-id fred/api-key --query SecretString --output text)" >> $GITHUB_ENV
       - name: Run integration tests
-        run: nix develop --command bash -c "uv sync && source .venv/bin/activate && pytest -m integration_test"
+        run: uv run pytest -m integration_test
 
   ci:
     needs: [prek, integration_tests]
