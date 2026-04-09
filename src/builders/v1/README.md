@@ -1,6 +1,6 @@
 # builders/v1
 
-Fluent builders for the [FRED API v1](https://fred.stlouisfed.org/docs/api/fred/) endpoints.
+Builders for the [FRED API v1](https://fred.stlouisfed.org/docs/api/fred/) endpoints.
 
 Each builder constructs a `Request` — a frozen object containing a `url` and a `params: dict[str, str]` — ready to pass directly to any HTTP client (`requests`, `httpx`, `aiohttp`, etc.).
 

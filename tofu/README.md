@@ -16,7 +16,7 @@ Remote state is stored in S3 (`ojhermann-tofu-state-dev` bucket, key `fred/terra
 ```bash
 tofu init
 tofu plan
-tofu apply   # any member of the ojhermann-org admins team can run this after merging
+tofu apply   # a member of the ojhermann-org admin team can run this after merging
 ```
 
 ## CI
