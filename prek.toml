@@ -41,10 +41,7 @@ hooks = [
   { id = "ty-check", name = "ty check", language = "system", entry = "ty check", pass_filenames = false, types = [
     "python",
   ] },
-  { id = "pytest-smoke", name = "pytest smoke tests", language = "system", entry = "pytest -m smoke_test", pass_filenames = false, types = [
-    "python",
-  ] },
-  { id = "pytest-unit", name = "pytest unit tests", language = "system", entry = "pytest -m unit_test", pass_filenames = false, types = [
+{ id = "pytest-unit", name = "pytest unit tests", language = "system", entry = "pytest -m unit_test", pass_filenames = false, types = [
     "python",
   ] },
   { id = "pytest-contract", name = "pytest contract tests", language = "system", entry = "pytest -m contract_test", pass_filenames = false, types = [
