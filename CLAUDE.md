@@ -4,14 +4,14 @@
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-The library is being built incrementally:
-1. Core library: functional, type-driven approach
-2. Friendly wrapper: requires only a valid API key; aimed at non-engineers
+The library is being built incrementally as self-contained modules:
+1. `src/request`: builds typed requests for the FRED API
+2. `src/response` (planned): models typed responses from the FRED API
 
 ## Tech stack
 
 - **Nix flakes**: manages high-level dev dependencies (uv, prek, helix LSPs, awscli2, etc.)
-- **uv**: manages Python dependencies (`pyproject.toml`), lib layout (`src/fred/`)
+- **uv**: manages Python dependencies (`pyproject.toml`), lib layout (`src/`)
 - **direnv**: activates the nix dev shell and loads secrets automatically on `cd`
 - **prek**: pre-commit and pre-push hooks
 
@@ -43,23 +43,17 @@ prek hooks run automatically. Pre-commit checks: builtins, nix (nixfmt, statix, 
 
 ## Testing
 
-Two tiers:
-- **Unit tests** (`-m unit_test`): mock the HTTP layer, no API key needed, always run
-- **Integration tests**: require `FRED_API_KEY` to be set, skipped if absent
+Three tiers:
+- **Unit tests** (`-m unit_test`): no API key needed, always run
+- **Contract tests** (`-m contract_test`): assert on specific values (e.g. enum values), no API key needed, always run
+- **Integration tests** (`-m integration_test`): require `FRED_API_KEY` to be set, skipped if absent; live in `tests/integration_test/`
 
-Run unit tests: `pytest -m unit_test`
+Run unit and contract tests: `pytest -m "unit_test or contract_test"`
 Run all tests (requires API key): `pytest`
 
 ## Library API design
 
-The library accepts the API key as an explicit parameter first, with an optional fallback to the `FRED_API_KEY` environment variable:
-
-```python
-client = FredClient(api_key="...")        # explicit
-client = FredClient()                     # reads FRED_API_KEY from environment
-```
-
-Never log or expose the API key in debug output, request metadata, or error messages.
+Each module exposes a minimal public API via its `__init__.py`. Implementation details are kept internal. Never log or expose the API key in debug output, request metadata, or error messages.
 
 ## Git workflow
 

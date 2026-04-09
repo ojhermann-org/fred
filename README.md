@@ -2,19 +2,12 @@
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-## Library
-- [fred/v1](src/fred/v1/README.md)
-- [builders/v1](src/builders/v1/README.md)
-
-## Infrastructure
-- [tofu](tofu/README.md)
-
 ## Overview
 
-`fred` provides a type-driven Python interface to the FRED API. It is being built incrementally:
+`fred` provides a type-driven Python interface to the FRED API, built as self-contained modules:
 
-1. **Core library**: functional, type-driven approach for programmatic use
-2. **Friendly wrapper**: minimal configuration (API key only), aimed at non-engineers
+1. **`request`**: builds typed, validated requests for the FRED API
+2. **`response`** (planned): models typed responses from the FRED API
 
 ## Requirements
 
@@ -37,13 +30,12 @@ direnv will activate the nix dev shell, run `uv sync`, activate the Python venv,
 ## Usage
 
 ```python
-from fred import FredClient
+from request import RequestBuilder, FileType
 
-# Explicit API key
-client = FredClient(api_key="your-key")
-
-# Or via environment variable (FRED_API_KEY)
-client = FredClient()
+request = (
+    RequestBuilder.source()(api_key="your-key", source_id=1, file_type=FileType.json)
+    .build()
+)
 ```
 
 ## Development
@@ -51,8 +43,8 @@ client = FredClient()
 ### Running tests
 
 ```bash
-# Unit tests only (no API key required)
-pytest -m unit_test
+# Unit and contract tests (no API key required)
+pytest -m "unit_test or contract_test"
 
 # All tests (requires FRED_API_KEY)
 pytest
