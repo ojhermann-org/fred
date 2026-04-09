@@ -17,6 +17,7 @@ jobs:
   integration_tests:
     needs: [prek]
     runs-on: ubuntu-latest
+    environment: integration
     permissions:
       id-token: write
       contents: read
