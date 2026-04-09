@@ -1,4 +1,4 @@
-from request.enum.endpoint import Endpoint
+from fred.request.enum.endpoint import Endpoint
 
 
 class Request:

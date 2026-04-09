@@ -1,6 +1,6 @@
 import pytest
 
-from request.implementation.params.sources.order_by import OrderBy
+from fred.request.implementation.params.sources.order_by import OrderBy
 
 
 @pytest.mark.contract_test

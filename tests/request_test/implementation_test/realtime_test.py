@@ -1,7 +1,7 @@
 from pydantic import TypeAdapter, ValidationError
 import pytest
 
-from request.implementation.realtime import Realtime
+from fred.request.implementation.realtime import Realtime
 
 _adapter = TypeAdapter(Realtime)
 

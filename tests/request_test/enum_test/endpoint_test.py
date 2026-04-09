@@ -1,6 +1,6 @@
 import pytest
 
-from request.enum.endpoint import Base, combine
+from fred.request.enum.endpoint import Base, combine
 
 
 @pytest.mark.unit_test

@@ -1,6 +1,6 @@
 import pytest
 
-from request.implementation.file_type import FileType
+from fred.request.implementation.file_type import FileType
 
 
 @pytest.mark.contract_test

@@ -4,10 +4,10 @@ from zoneinfo import ZoneInfo
 from pydantic import ValidationError
 import pytest
 
-from request.implementation.file_type import FileType
-from request.implementation.params.source_releases.main import Params
-from request.implementation.params.source_releases.order_by import OrderBy
-from request.implementation.sort_order import SortOrder
+from fred.request.implementation.file_type import FileType
+from fred.request.implementation.params.source_releases.main import Params
+from fred.request.implementation.params.source_releases.order_by import OrderBy
+from fred.request.implementation.sort_order import SortOrder
 
 VALID_KEY = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
 VALID_SOURCE_ID = 1

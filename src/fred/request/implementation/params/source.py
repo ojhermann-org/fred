@@ -1,8 +1,8 @@
 from pydantic import BaseModel, Field
 
-from request.implementation.api_key import ApiKey
-from request.implementation.file_type import FileType
-from request.implementation.realtime import Realtime, today_st_louis
+from fred.request.implementation.api_key import ApiKey
+from fred.request.implementation.file_type import FileType
+from fred.request.implementation.realtime import Realtime, today_st_louis
 
 
 class Params(BaseModel):

@@ -1,12 +1,12 @@
 from typing import Self
 
-from request.enum.endpoint import Endpoint
-from request.implementation.api_key import ApiKey
-from request.implementation.file_type import FileType
-from request.implementation.params.source import Params
-from request.implementation.realtime import Realtime, today_st_louis
-from request.implementation.request import Request as RequestImplementation
-from request.interface.request import Request
+from fred.request.enum.endpoint import Endpoint
+from fred.request.implementation.api_key import ApiKey
+from fred.request.implementation.file_type import FileType
+from fred.request.implementation.params.source import Params
+from fred.request.implementation.realtime import Realtime, today_st_louis
+from fred.request.implementation.request import Request as RequestImplementation
+from fred.request.interface.request import Request
 
 
 class Builder:

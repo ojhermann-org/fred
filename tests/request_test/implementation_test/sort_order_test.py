@@ -1,6 +1,6 @@
 import pytest
 
-from request.implementation.sort_order import SortOrder
+from fred.request.implementation.sort_order import SortOrder
 
 
 @pytest.mark.contract_test

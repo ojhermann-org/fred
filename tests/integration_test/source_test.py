@@ -4,7 +4,7 @@ import urllib.request
 
 import pytest
 
-from request import FileType, RequestBuilder
+from fred.request import FileType, RequestBuilder
 
 
 @pytest.mark.integration_test

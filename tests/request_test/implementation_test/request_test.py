@@ -1,7 +1,7 @@
 import pytest
 
-from request.enum.endpoint import Endpoint
-from request.implementation.request import Request
+from fred.request.enum.endpoint import Endpoint
+from fred.request.implementation.request import Request
 
 PARAMS: dict[str, str] = {"api_key": "abc123", "file_type": "json"}
 

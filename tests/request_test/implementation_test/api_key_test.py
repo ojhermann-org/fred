@@ -1,7 +1,7 @@
 from pydantic import TypeAdapter, ValidationError
 import pytest
 
-from request.implementation.api_key import ApiKey
+from fred.request.implementation.api_key import ApiKey
 
 _adapter = TypeAdapter(ApiKey)
 

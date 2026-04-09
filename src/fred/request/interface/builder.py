@@ -1,7 +1,7 @@
 from enum import StrEnum
 from typing import Protocol
 
-from request.interface.request import Request
+from fred.request.interface.request import Request
 
 
 class Builder(Protocol):

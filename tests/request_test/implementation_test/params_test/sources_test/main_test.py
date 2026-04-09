@@ -4,10 +4,10 @@ from zoneinfo import ZoneInfo
 from pydantic import ValidationError
 import pytest
 
-from request.implementation.file_type import FileType
-from request.implementation.params.sources.main import Params
-from request.implementation.params.sources.order_by import OrderBy
-from request.implementation.sort_order import SortOrder
+from fred.request.implementation.file_type import FileType
+from fred.request.implementation.params.sources.main import Params
+from fred.request.implementation.params.sources.order_by import OrderBy
+from fred.request.implementation.sort_order import SortOrder
 
 VALID_KEY = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
 _ST_LOUIS_TZ = ZoneInfo("America/Chicago")

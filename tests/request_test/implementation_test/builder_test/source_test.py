@@ -3,9 +3,9 @@ from zoneinfo import ZoneInfo
 
 import pytest
 
-from request.enum.endpoint import Endpoint
-from request.implementation.builder.source import Builder
-from request.implementation.file_type import FileType
+from fred.request.enum.endpoint import Endpoint
+from fred.request.implementation.builder.source import Builder
+from fred.request.implementation.file_type import FileType
 
 VALID_KEY = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"
 VALID_SOURCE_ID = 1

@@ -1,16 +1,14 @@
 from pydantic import BaseModel, Field
 
-from request.implementation.api_key import ApiKey
-from request.implementation.file_type import FileType
-from request.implementation.params.source_releases.order_by import OrderBy
-from request.implementation.realtime import Realtime, today_st_louis
-from request.implementation.sort_order import SortOrder
+from fred.request.implementation.api_key import ApiKey
+from fred.request.implementation.file_type import FileType
+from fred.request.implementation.params.sources.order_by import OrderBy
+from fred.request.implementation.realtime import Realtime, today_st_louis
+from fred.request.implementation.sort_order import SortOrder
 
 
 class Params(BaseModel):
     api_key: ApiKey = Field(...)
-
-    source_id: int = Field(..., gt=0)
 
     file_type: FileType = Field(...)
 
@@ -22,7 +20,7 @@ class Params(BaseModel):
 
     offset: int = Field(default=0, gt=-1)
 
-    order_by: OrderBy = Field(default=OrderBy.release_id)
+    order_by: OrderBy = Field(default=OrderBy.source_id)
 
     sort_order: SortOrder = Field(default=SortOrder.asc)
 
