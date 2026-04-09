@@ -2,7 +2,12 @@
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-- [v1](src/fred/v1/README.md)
+## Library
+- [fred/v1](src/fred/v1/README.md)
+- [builders/v1](src/builders/v1/README.md)
+
+## Infrastructure
+- [tofu](tofu/README.md)
 
 ## Overview
 
