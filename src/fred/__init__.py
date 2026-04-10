@@ -1,3 +1,3 @@
-from fred import request as request
+from fred import request, response
 
-__all__ = ["request"]
+__all__ = ["request", "response"]
