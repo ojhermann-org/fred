@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      statuses: write
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v16
@@ -27,6 +28,10 @@ jobs:
             git add flake.lock
             git commit -m "chore: update flake.lock"
             git push -u origin HEAD --force
+            gh api repos/${{ github.repository }}/statuses/$(git rev-parse HEAD) \
+              -f state=success \
+              -f context=ci \
+              -f description="flake.lock update only"
             gh pr create \
               --title "chore: update flake.lock" \
               --body "Automated daily flake.lock update."
