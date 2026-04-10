@@ -5,17 +5,54 @@ on:
     branches: [main]
 
 jobs:
-  prek:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      nix: ${{ steps.filter.outputs.nix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            nix:
+              - '**/*.nix'
+              - 'flake.lock'
+
+  python-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync
+      - name: ruff check
+        run: uv run ruff check
+      - name: ruff format
+        run: uv run ruff format --check
+      - name: ty check
+        run: uv run ty check
+      - name: pytest unit and contract tests
+        run: uv run pytest -m "unit_test or contract_test"
+
+  nix-checks:
+    needs: [changes]
+    if: needs.changes.outputs.nix == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v16
       - uses: DeterminateSystems/magic-nix-cache-action@v8
-      - name: Run prek
+      - name: Run Nix and prek checks
         run: nix develop --command bash -c "uv sync && source .venv/bin/activate && prek run --all-files"
 
   integration_tests:
-    needs: [prek]
+    needs: [python-checks]
     runs-on: ubuntu-latest
     environment: integration
     permissions:
@@ -40,7 +77,7 @@ jobs:
         run: uv run pytest -m integration_test
 
   ci:
-    needs: [prek, integration_tests]
+    needs: [python-checks, nix-checks, integration_tests]
     runs-on: ubuntu-latest
     if: always()
     steps:
