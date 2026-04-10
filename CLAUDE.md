@@ -5,8 +5,10 @@
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
 The library is being built incrementally as self-contained modules:
-1. `src/request`: builds typed requests for the FRED API
-2. `src/response` (planned): models typed responses from the FRED API
+1. `src/request`: builds typed, validated requests for the FRED API
+2. `src/response`: models typed, validated responses from the FRED API
+
+The two modules are intentionally independent — they share no code, including common types like `Realtime`.
 
 ## Tech stack
 

@@ -5,6 +5,7 @@ import urllib.request
 import pytest
 
 from fred.request import FileType, RequestBuilder
+from fred.response import SourceResponse
 
 
 @pytest.mark.integration_test
@@ -17,6 +18,6 @@ def test_source_request_returns_valid_response(api_key: str) -> None:
     url = str(request.endpoint()) + "?" + urllib.parse.urlencode(request.parameters())
     with urllib.request.urlopen(url) as resp:
         body = json.loads(resp.read().decode())
-    assert "sources" in body
-    assert len(body["sources"]) > 0
-    assert body["sources"][0]["id"] == 1
+    response = SourceResponse.model_validate(body)
+    assert len(response.sources) > 0
+    assert response.sources[0].id == 1

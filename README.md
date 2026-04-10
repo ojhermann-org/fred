@@ -7,7 +7,9 @@ A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) 
 `fred` provides a type-driven Python interface to the FRED API, built as self-contained modules:
 
 1. **`request`**: builds typed, validated requests for the FRED API
-2. **`response`** (planned): models typed responses from the FRED API
+2. **`response`**: models typed, validated responses from the FRED API
+
+The two modules are intentionally independent — they share no code, including common types like `Realtime`.
 
 ## Requirements
 
@@ -30,12 +32,23 @@ direnv will activate the nix dev shell, run `uv sync`, activate the Python venv,
 ## Usage
 
 ```python
-from request import RequestBuilder, FileType
+import json
+import urllib.parse
+import urllib.request
+
+from fred.request import FileType, RequestBuilder
+from fred.response import SourceResponse
 
 request = (
     RequestBuilder.source()(api_key="your-key", source_id=1, file_type=FileType.json)
     .build()
 )
+url = str(request.endpoint()) + "?" + urllib.parse.urlencode(request.parameters())
+
+with urllib.request.urlopen(url) as resp:
+    body = json.loads(resp.read().decode())
+
+response = SourceResponse.model_validate(body)
 ```
 
 ## Development
