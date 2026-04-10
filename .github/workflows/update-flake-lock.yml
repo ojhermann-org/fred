@@ -8,6 +8,9 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v16
@@ -23,6 +26,7 @@ jobs:
             git checkout -b update-flake-lock-$(date +%Y%m%d)
             git add flake.lock
             git commit -m "chore: update flake.lock"
+            git push -u origin HEAD
             gh pr create \
               --title "chore: update flake.lock" \
               --body "Automated daily flake.lock update."
