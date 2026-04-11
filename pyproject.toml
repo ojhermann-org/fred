@@ -31,7 +31,7 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 
 [tool.ruff.lint]
-select = ["ANN", "I"]
+select = ["ANN", "F", "I"]
 
 [tool.ruff.lint.isort]
 force-sort-within-sections = true
