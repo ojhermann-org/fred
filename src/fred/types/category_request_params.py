@@ -11,4 +11,4 @@ class CategoryRequestParams(BaseModel):
     category_id: CategoryID = Field(...)
 
     def for_request(self) -> dict[str, str]:
-        return {k: str(v) for k, v in self.model_dump() if v is not None}
+        return {k: str(v) for k, v in self.model_dump().items() if v is not None}
