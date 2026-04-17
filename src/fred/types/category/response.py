@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from fred.types.categories.category.category import Category
+from fred.types.category.category import Category
 
 
 class Response(BaseModel):
