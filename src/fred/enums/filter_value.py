@@ -3,6 +3,9 @@ from enum import StrEnum, auto
 
 class CategorySeries(StrEnum):
     # see filter_variable
+    # if filter_variable.CategorySeries.frequency, then Frequency
+    # if filter_variable.CategorySeries.units, then Units
+    # if filter_variable.CategorySeries.seasonal_adjustment, then Seasonal Adjustment
     ...
 
 
