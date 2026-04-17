@@ -21,6 +21,7 @@ class Base(StrEnum):
 
 class Endpoint(StrEnum):
     category = Base.category
+    category_children = combine(Base.category, "children")
     source = Base.source
     source_releases = combine(Base.source, "releases")
     sources = Base.sources
