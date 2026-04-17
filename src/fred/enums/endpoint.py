@@ -20,6 +20,7 @@ class Base(StrEnum):
 
 
 class Endpoint(StrEnum):
+    category = Base.category
     source = Base.source
     source_releases = combine(Base.source, "releases")
     sources = Base.sources

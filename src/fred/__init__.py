@@ -1,3 +1,3 @@
-from fred import request, response
+from fred import request, response, types
 
-__all__ = ["request", "response"]
+__all__ = ["types", "request", "response"]
