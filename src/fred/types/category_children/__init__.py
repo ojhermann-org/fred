@@ -6,6 +6,7 @@ from fred.types.category_children.request_params import (
     Realtime,
     RequestParams,
 )
+from fred.types.category_children.response import Response
 
 ENDPOINT = Endpoint.category_children
 
@@ -16,4 +17,5 @@ __all__ = [
     "FileType",
     "Realtime",
     "RequestParams",
+    "Response",
 ]
