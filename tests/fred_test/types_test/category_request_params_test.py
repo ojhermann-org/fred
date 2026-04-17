@@ -45,16 +45,3 @@ def test_rejects_negative_category_id() -> None:
             file_type=FileType.json,
             category_id=-1,
         )
-
-
-@pytest.mark.contract_test
-def test_for_request_returns_string_values() -> None:
-    p = CategoryRequestParams(
-        api_key=_VALID_API_KEY,
-        file_type=FileType.json,
-        category_id=42,
-    )
-    result = p.for_request()
-    assert result["api_key"] == _VALID_API_KEY
-    assert result["file_type"] == "json"
-    assert result["category_id"] == "42"

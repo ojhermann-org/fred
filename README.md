@@ -37,6 +37,7 @@ import urllib.request
 
 from fred.enums.endpoint import Endpoint
 from fred.enums.file_type import FileType
+from fred.functions.for_request import for_request
 from fred.types.category_request_params import CategoryRequestParams
 from fred.types.category_response import Response
 
@@ -46,7 +47,7 @@ params = CategoryRequestParams(
     category_id=0,
 )
 
-url = f"{Endpoint.category}?{urllib.parse.urlencode(params.for_request())}"
+url = f"{Endpoint.category}?{urllib.parse.urlencode(for_request(params))}"
 
 with urllib.request.urlopen(url) as resp:
     data = json.loads(resp.read())

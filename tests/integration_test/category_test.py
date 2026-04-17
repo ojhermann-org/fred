@@ -2,6 +2,7 @@ import pytest
 
 from fred.enums.endpoint import Endpoint
 from fred.enums.file_type import FileType
+from fred.functions.for_request import for_request
 from fred.types.category_request_params import CategoryRequestParams
 from fred.types.category_response import Response
 from tests.integration_test.conftest import FredGetJson, FredGetXml
@@ -14,7 +15,7 @@ def test_category_json(api_key: str, fred_get_json: FredGetJson) -> None:
         file_type=FileType.json,
         category_id=0,
     )
-    data = fred_get_json(str(Endpoint.category), params.for_request())
+    data = fred_get_json(str(Endpoint.category), for_request(params))
     response = Response.model_validate(data)
     assert len(response.categories) == 1
     assert response.categories[0].id == 0
@@ -29,7 +30,7 @@ def test_category_xml(api_key: str, fred_get_xml: FredGetXml) -> None:
         file_type=FileType.xml,
         category_id=0,
     )
-    root = fred_get_xml(str(Endpoint.category), params.for_request())
+    root = fred_get_xml(str(Endpoint.category), for_request(params))
     assert root.tag == "categories"
     categories = root.findall("category")
     assert len(categories) == 1

@@ -9,7 +9,7 @@ The library lives under `src/fred/` and is built incrementally, endpoint by endp
 - `fred.types` — primitive types and per-endpoint request/response models (e.g. `CategoryRequestParams`, `Category`, `CategoryResponse`)
 - `fred.functions` — small utility functions (e.g. `today_st_louis`)
 
-Each endpoint gets a `*RequestParams` model (with a `for_request() -> dict[str, str]` method) and a `*Response` model. Both are Pydantic `BaseModel`s. Enums, primitive types, and other shared building blocks live in `fred.enums` and `fred.types` respectively.
+Each endpoint gets a `*RequestParams` model and a `*Response` model. Both are Pydantic `BaseModel`s. Use `fred.functions.for_request` to serialize a `*RequestParams` model to a `dict[str, str]` for use in a request. Enums, primitive types, and other shared building blocks live in `fred.enums` and `fred.types` respectively.
 
 ## Tech stack
 
