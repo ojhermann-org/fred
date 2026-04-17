@@ -1,5 +1,5 @@
 from fred.enums.endpoint import Endpoint
-from fred.types.categories.category_children.request_params import (
+from fred.types.category_children.request_params import (
     ApiKey,
     CategoryID,
     FileType,

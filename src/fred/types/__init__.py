@@ -1,3 +1,3 @@
-from fred.types import categories
+from fred.types import category, category_children
 
-__all__ = ["categories"]
+__all__ = ["category", "category_children"]
