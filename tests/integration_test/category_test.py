@@ -1,22 +1,18 @@
 import pytest
 
-from fred.enums.endpoint import Endpoint
-from fred.enums.file_type import FileType
-from fred.functions.for_request import for_request
-from fred.types.category_request_params import CategoryRequestParams
-from fred.types.category_response import Response
+from fred import category, for_request
 from tests.integration_test.conftest import FredGetJson, FredGetXml
 
 
 @pytest.mark.integration_test
 def test_category_json(api_key: str, fred_get_json: FredGetJson) -> None:
-    params = CategoryRequestParams(
+    params = category.RequestParams(
         api_key=api_key,
-        file_type=FileType.json,
+        file_type=category.FileType.json,
         category_id=0,
     )
-    data = fred_get_json(str(Endpoint.category), for_request(params))
-    response = Response.model_validate(data)
+    data = fred_get_json(str(category.ENDPOINT), for_request(params))
+    response = category.Response.model_validate(data)
     assert len(response.categories) == 1
     assert response.categories[0].id == 0
     assert response.categories[0].name == "Categories"
@@ -25,12 +21,12 @@ def test_category_json(api_key: str, fred_get_json: FredGetJson) -> None:
 
 @pytest.mark.integration_test
 def test_category_xml(api_key: str, fred_get_xml: FredGetXml) -> None:
-    params = CategoryRequestParams(
+    params = category.RequestParams(
         api_key=api_key,
-        file_type=FileType.xml,
+        file_type=category.FileType.xml,
         category_id=0,
     )
-    root = fred_get_xml(str(Endpoint.category), for_request(params))
+    root = fred_get_xml(str(category.ENDPOINT), for_request(params))
     assert root.tag == "categories"
     categories = root.findall("category")
     assert len(categories) == 1

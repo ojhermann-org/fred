@@ -1,12 +1,12 @@
 from pydantic import ValidationError
 import pytest
 
-from fred.types.category_response import Response
+from fred import category
 
 
 @pytest.mark.contract_test
 def test_accepts_single_category() -> None:
-    r = Response(categories=[{"id": 0, "name": "Categories", "parent_id": 0}])  # ty: ignore[invalid-argument-type]
+    r = category.Response(categories=[{"id": 0, "name": "Categories", "parent_id": 0}])  # ty: ignore[invalid-argument-type]
     assert len(r.categories) == 1
     assert r.categories[0].id == 0
     assert r.categories[0].name == "Categories"
@@ -15,7 +15,7 @@ def test_accepts_single_category() -> None:
 
 @pytest.mark.contract_test
 def test_accepts_multiple_categories() -> None:
-    r = Response(
+    r = category.Response(
         categories=[  # ty: ignore[invalid-argument-type]
             {"id": 0, "name": "Categories", "parent_id": 0},
             {
@@ -31,17 +31,17 @@ def test_accepts_multiple_categories() -> None:
 
 @pytest.mark.contract_test
 def test_accepts_empty_list() -> None:
-    r = Response(categories=[])
+    r = category.Response(categories=[])
     assert r.categories == []
 
 
 @pytest.mark.contract_test
 def test_rejects_category_with_negative_id() -> None:
     with pytest.raises(ValidationError):
-        Response(categories=[{"id": -1, "name": "Bad", "parent_id": 0}])  # ty: ignore[invalid-argument-type]
+        category.Response(categories=[{"id": -1, "name": "Bad", "parent_id": 0}])  # ty: ignore[invalid-argument-type]
 
 
 @pytest.mark.contract_test
 def test_rejects_missing_categories_field() -> None:
     with pytest.raises(ValidationError):
-        Response()  # ty: ignore[missing-argument]
+        category.Response()  # ty: ignore[missing-argument]
