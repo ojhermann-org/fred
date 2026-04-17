@@ -1,15 +1,12 @@
 # fred
 
+> **Work in progress** — the library is being built incrementally. APIs will change as more endpoints are added.
+
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
 ## Overview
 
-`fred` provides a type-driven Python interface to the FRED API, built as self-contained modules:
-
-1. **`request`**: builds typed, validated requests for the FRED API
-2. **`response`**: models typed, validated responses from the FRED API
-
-The two modules are intentionally independent — they share no code, including common types like `Realtime`.
+`fred` provides a type-driven Python interface to the FRED API. It is built endpoint by endpoint, with a typed request params model and a typed response model for each endpoint.
 
 ## Requirements
 
@@ -31,24 +28,31 @@ direnv will activate the nix dev shell, run `uv sync`, activate the Python venv,
 
 ## Usage
 
+Fetch the root FRED category:
+
 ```python
 import json
 import urllib.parse
 import urllib.request
 
-from fred.request import FileType, RequestBuilder
-from fred.response import SourceResponse
+from fred.enums.endpoint import Endpoint
+from fred.enums.file_type import FileType
+from fred.types.category_request_params import CategoryRequestParams
+from fred.types.category_response import Response
 
-request = (
-    RequestBuilder.source()(api_key="your-key", source_id=1, file_type=FileType.json)
-    .build()
+params = CategoryRequestParams(
+    api_key="your-api-key",
+    file_type=FileType.json,
+    category_id=0,
 )
-url = str(request.endpoint()) + "?" + urllib.parse.urlencode(request.parameters())
+
+url = f"{Endpoint.category}?{urllib.parse.urlencode(params.for_request())}"
 
 with urllib.request.urlopen(url) as resp:
-    body = json.loads(resp.read().decode())
+    data = json.loads(resp.read())
 
-response = SourceResponse.model_validate(body)
+response = Response.model_validate(data)
+print(response.categories[0].name)  # "Categories"
 ```
 
 ## Development

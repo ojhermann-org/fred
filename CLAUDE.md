@@ -4,11 +4,12 @@
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-The library is being built incrementally as self-contained modules:
-1. `src/request`: builds typed, validated requests for the FRED API
-2. `src/response`: models typed, validated responses from the FRED API
+The library lives under `src/fred/` and is built incrementally, endpoint by endpoint. The top-level subpackages are:
+- `fred.enums` — enum types (e.g. `FileType`, `Endpoint`)
+- `fred.types` — primitive types and per-endpoint request/response models (e.g. `CategoryRequestParams`, `Category`, `CategoryResponse`)
+- `fred.functions` — small utility functions (e.g. `today_st_louis`)
 
-The two modules are intentionally independent — they share no code, including common types like `Realtime`.
+Each endpoint gets a `*RequestParams` model (with a `for_request() -> dict[str, str]` method) and a `*Response` model. Both are Pydantic `BaseModel`s. Enums, primitive types, and other shared building blocks live in `fred.enums` and `fred.types` respectively.
 
 ## Tech stack
 
@@ -55,7 +56,7 @@ Run all tests (requires API key): `pytest`
 
 ## Library API design
 
-Each module exposes a minimal public API via its `__init__.py`. Implementation details are kept internal. Never log or expose the API key in debug output, request metadata, or error messages.
+Each subpackage exposes a minimal public API via its `__init__.py`. Implementation details are kept internal. Never log or expose the API key in debug output, request metadata, or error messages.
 
 ## Git workflow
 
