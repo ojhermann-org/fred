@@ -4,12 +4,33 @@
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-The library lives under `src/fred/` and is built incrementally, endpoint by endpoint. The top-level subpackages are:
-- `fred.enums` — enum types (e.g. `FileType`, `Endpoint`)
-- `fred.types` — primitive types and per-endpoint request/response models (e.g. `CategoryRequestParams`, `Category`, `CategoryResponse`)
-- `fred.functions` — small utility functions (e.g. `today_st_louis`)
+The library lives under `src/fred/` and is built incrementally, endpoint by endpoint.
 
-Each endpoint gets a `*RequestParams` model (with a `for_request() -> dict[str, str]` method) and a `*Response` model. Both are Pydantic `BaseModel`s. Enums, primitive types, and other shared building blocks live in `fred.enums` and `fred.types` respectively.
+### Public API
+
+Each endpoint is exposed as a module alias at the top level of the `fred` package, e.g. `from fred import category`. The alias exposes everything a caller needs for that endpoint: `RequestParams`, `Response`, `ENDPOINT`, and any enum types required to construct a request (e.g. `FileType`). This keeps cognitive burden low — callers select options from the alias namespace rather than hunting across subpackages.
+
+`for_request` is also exposed at the top level (`from fred import for_request`) since it is used across all endpoints.
+
+Example:
+```python
+from fred import category, for_request
+
+params = category.RequestParams(
+    api_key="...",
+    file_type=category.FileType.json,
+    category_id=0,
+)
+query = for_request(params)  # dict[str, str], ready for urllib or httpx
+```
+
+### Internal structure
+
+- `fred.enums` — enum types (e.g. `FileType`, `SeasonalAdjustment`)
+- `fred.types` — primitive types (e.g. `ApiKey`, `CategoryID`) and per-endpoint subpackages
+- `fred.functions` — small utility functions (e.g. `today_st_louis`, `for_request`)
+
+Per-endpoint models live under `fred.types.<group>.<endpoint>/`: `request_params.py` (`RequestParams`), `response.py` (`Response`), and a model file for the core response type. Enums and primitives shared across endpoints stay in `fred.enums` and `fred.types` respectively.
 
 ## Tech stack
 

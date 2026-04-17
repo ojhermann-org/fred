@@ -35,23 +35,20 @@ import json
 import urllib.parse
 import urllib.request
 
-from fred.enums.endpoint import Endpoint
-from fred.enums.file_type import FileType
-from fred.types.category_request_params import CategoryRequestParams
-from fred.types.category_response import Response
+from fred import category, for_request
 
-params = CategoryRequestParams(
+params = category.RequestParams(
     api_key="your-api-key",
-    file_type=FileType.json,
+    file_type=category.FileType.json,
     category_id=0,
 )
 
-url = f"{Endpoint.category}?{urllib.parse.urlencode(params.for_request())}"
+url = f"{category.ENDPOINT}?{urllib.parse.urlencode(for_request(params))}"
 
 with urllib.request.urlopen(url) as resp:
     data = json.loads(resp.read())
 
-response = Response.model_validate(data)
+response = category.Response.model_validate(data)
 print(response.categories[0].name)  # "Categories"
 ```
 
