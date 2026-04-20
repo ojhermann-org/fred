@@ -11,3 +11,8 @@ def test_yes_value() -> None:
 @pytest.mark.contract_test
 def test_no_value() -> None:
     assert SeasonalAdjustment.no == "Not Seasonally Adjusted"
+
+
+@pytest.mark.contract_test
+def test_saar_value() -> None:
+    assert SeasonalAdjustment.saar == "Seasonally Adjusted Annual Rate"
