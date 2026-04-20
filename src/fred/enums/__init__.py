@@ -8,6 +8,7 @@ import fred.enums.order_by as order_by
 from fred.enums.output_type import OutputType
 from fred.enums.search_type import SearchType
 from fred.enums.seasonal_adjustment import SeasonalAdjustment
+from fred.enums.seasonal_adjustment_short import SeasonalAdjustmentShort
 from fred.enums.sort_order import SortOrder
 from fred.enums.tag_group_id import TagGroupID
 from fred.enums.units import Units
@@ -20,6 +21,7 @@ __all__ = [
     "OutputType",
     "SearchType",
     "SeasonalAdjustment",
+    "SeasonalAdjustmentShort",
     "SortOrder",
     "TagGroupID",
     "Units",
