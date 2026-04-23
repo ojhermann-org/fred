@@ -6,7 +6,7 @@ class TagGroupID(StrEnum):
     general = "gen"
     concept = "gen"
     geography = "geo"
-    geotraphy_type = "geot"
+    geography_type = "geot"
     release = "rls"
     seasonal_adjustment = "seas"
     source = "src"

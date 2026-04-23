@@ -24,8 +24,8 @@ def test_geography_value() -> None:
 
 
 @pytest.mark.contract_test
-def test_geotraphy_type_value() -> None:
-    assert TagGroupID.geotraphy_type == "geot"
+def test_geography_type_value() -> None:
+    assert TagGroupID.geography_type == "geot"
 
 
 @pytest.mark.contract_test
