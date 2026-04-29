@@ -122,9 +122,9 @@ def test_accepts_explicit_tag_group_id() -> None:
         api_key=_VALID_API_KEY,
         file_type=FileType.json,
         category_id=0,
-        tag_group_id=TagGroupID.geography,
+        tag_group_id=TagGroupID.geo,
     )
-    assert p.tag_group_id == TagGroupID.geography
+    assert p.tag_group_id == TagGroupID.geo
 
 
 @pytest.mark.contract_test
