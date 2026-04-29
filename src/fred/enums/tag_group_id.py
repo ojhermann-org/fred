@@ -1,12 +1,12 @@
-from enum import StrEnum
+from enum import StrEnum, auto
 
 
 class TagGroupID(StrEnum):
-    frequency = "freq"
-    general = "gen"
-    concept = "gen"
-    geography = "geo"
-    geotraphy_type = "geot"
-    release = "rls"
-    seasonal_adjustment = "seas"
-    source = "src"
+    freq = auto()  # Frequency
+    gen = auto()  # General or Concept
+    geo = auto()  # Geography
+    geot = auto()  # Geography Type
+    rls = auto()  # Release
+    seas = auto()  # Seasonal Adjustment
+    src = auto()  # Source
+    cc = auto()  # Citation & Copyright

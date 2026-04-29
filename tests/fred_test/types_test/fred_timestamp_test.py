@@ -1,9 +1,9 @@
 from pydantic import TypeAdapter, ValidationError
 import pytest
 
-from fred.types.last_updated import LastUpdated
+from fred.types.fred_timestamp import FredTimestamp
 
-_adapter = TypeAdapter(LastUpdated)
+_adapter = TypeAdapter(FredTimestamp)
 
 
 @pytest.mark.contract_test

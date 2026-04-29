@@ -4,40 +4,40 @@ from fred.enums.tag_group_id import TagGroupID
 
 
 @pytest.mark.contract_test
-def test_frequency_value() -> None:
-    assert TagGroupID.frequency == "freq"
+def test_freq_value() -> None:
+    assert TagGroupID.freq == "freq"
 
 
 @pytest.mark.contract_test
-def test_general_value() -> None:
-    assert TagGroupID.general == "gen"
+def test_gen_value() -> None:
+    assert TagGroupID.gen == "gen"
 
 
 @pytest.mark.contract_test
-def test_concept_value() -> None:
-    assert TagGroupID.concept == "gen"
+def test_geo_value() -> None:
+    assert TagGroupID.geo == "geo"
 
 
 @pytest.mark.contract_test
-def test_geography_value() -> None:
-    assert TagGroupID.geography == "geo"
+def test_geot_value() -> None:
+    assert TagGroupID.geot == "geot"
 
 
 @pytest.mark.contract_test
-def test_geotraphy_type_value() -> None:
-    assert TagGroupID.geotraphy_type == "geot"
+def test_rls_value() -> None:
+    assert TagGroupID.rls == "rls"
 
 
 @pytest.mark.contract_test
-def test_release_value() -> None:
-    assert TagGroupID.release == "rls"
+def test_seas_value() -> None:
+    assert TagGroupID.seas == "seas"
 
 
 @pytest.mark.contract_test
-def test_seasonal_adjustment_value() -> None:
-    assert TagGroupID.seasonal_adjustment == "seas"
+def test_src_value() -> None:
+    assert TagGroupID.src == "src"
 
 
 @pytest.mark.contract_test
-def test_source_value() -> None:
-    assert TagGroupID.source == "src"
+def test_cc_value() -> None:
+    assert TagGroupID.cc == "cc"
