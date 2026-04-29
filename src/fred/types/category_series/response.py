@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 from fred.enums import SeasonalAdjustment, SeasonalAdjustmentShort, SortOrder
 from fred.enums.order_by import CategorySeries as OrderBy
-from fred.types.last_updated import LastUpdated
+from fred.types.fred_timestamp import FredTimestamp
 from fred.types.limit import Limit
 from fred.types.offset import Offset
 from fred.types.realtime import Realtime
@@ -21,7 +21,7 @@ class CategorySeries(BaseModel):
     units_short: str
     seasonal_adjustment: SeasonalAdjustment
     seasonal_adjustment_short: SeasonalAdjustmentShort
-    last_updated: LastUpdated
+    last_updated: FredTimestamp
     popularity: int
     group_popularity: int
     notes: str | None = None
