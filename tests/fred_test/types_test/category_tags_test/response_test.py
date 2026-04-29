@@ -4,7 +4,6 @@ import pytest
 from fred import category_tags
 from fred.enums import SortOrder
 from fred.enums.order_by import CategoryTags as OrderBy
-from fred.enums.tag_group_id import TagGroupID
 
 
 def _valid_tag(**overrides: object) -> dict[str, object]:
@@ -56,7 +55,7 @@ def test_accepts_multiple_tags() -> None:
         )
     )
     assert len(r.tags) == 2
-    assert r.tags[1].group_id == TagGroupID.geography_type
+    assert r.tags[1].group_id == "geot"
 
 
 @pytest.mark.contract_test
@@ -66,9 +65,11 @@ def test_accepts_empty_tags_list() -> None:
 
 
 @pytest.mark.contract_test
-def test_tag_group_id_parsed_as_enum() -> None:
-    r = category_tags.Response.model_validate(_valid_response())
-    assert r.tags[0].group_id == TagGroupID.source
+def test_accepts_unknown_group_id() -> None:
+    r = category_tags.Response.model_validate(
+        _valid_response(tags=[_valid_tag(group_id="cc")])
+    )
+    assert r.tags[0].group_id == "cc"
 
 
 @pytest.mark.contract_test

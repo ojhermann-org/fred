@@ -1,7 +1,6 @@
 from pydantic import ValidationError
 import pytest
 
-from fred.enums.tag_group_id import TagGroupID
 from fred.types.category_tags.tag import Tag
 
 
@@ -22,7 +21,7 @@ def _valid_tag(**overrides: object) -> dict[str, object]:
 def test_accepts_valid_tag() -> None:
     t = Tag.model_validate(_valid_tag())
     assert t.name == "bea"
-    assert t.group_id == TagGroupID.source
+    assert t.group_id == "src"
     assert t.notes == "U.S. Department of Commerce: Bureau of Economic Analysis"
     assert t.created == "2012-02-27 10:18:19-06"
     assert t.popularity == 87
@@ -30,9 +29,9 @@ def test_accepts_valid_tag() -> None:
 
 
 @pytest.mark.contract_test
-def test_group_id_parsed_as_enum() -> None:
-    t = Tag.model_validate(_valid_tag(group_id="geot"))
-    assert t.group_id == TagGroupID.geography_type
+def test_accepts_unknown_group_id() -> None:
+    t = Tag.model_validate(_valid_tag(group_id="cc"))
+    assert t.group_id == "cc"
 
 
 @pytest.mark.contract_test
@@ -42,9 +41,9 @@ def test_accepts_empty_notes() -> None:
 
 
 @pytest.mark.contract_test
-def test_rejects_invalid_group_id() -> None:
-    with pytest.raises(ValidationError):
-        Tag.model_validate(_valid_tag(group_id="invalid"))
+def test_accepts_none_notes() -> None:
+    t = Tag.model_validate(_valid_tag(notes=None))
+    assert t.notes is None
 
 
 @pytest.mark.contract_test
