@@ -1,34 +1,21 @@
-# fred
-
-> **Work in progress** — the library is being built incrementally. APIs will change as more endpoints are added.
+# fred-stl
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-## Overview
+> **Work in progress** — the library is being built incrementally. New endpoint groups are added with each minor release.
 
-`fred` provides a type-driven Python interface to the FRED API. It is built endpoint by endpoint, with a typed request params model and a typed response model for each endpoint.
+## Installation
+
+```bash
+pip install fred-stl
+```
 
 ## Requirements
 
-- [Nix](https://nixos.org/) with flakes enabled
-- [direnv](https://direnv.net/) hooked into your shell
-- An AWS SSO profile with access to the `FRED_API_KEY` secret in AWS Secrets Manager
+- Python 3.13+
+- A [FRED API key](https://fred.stlouisfed.org/docs/api/api_key.html) (free, requires registration)
 
-## Getting started
-
-1. Clone the repo and `cd` into it
-2. Create `.env.local` and set your AWS SSO profile:
-   ```bash
-   export AWS_PROFILE=<your-aws-sso-profile>
-   ```
-3. Log in to AWS: `aws sso login`
-4. Allow direnv: `direnv allow`
-
-direnv will activate the nix dev shell, run `uv sync`, activate the Python venv, and export `FRED_API_KEY` automatically.
-
-## Usage
-
-Fetch the root FRED category:
+## Quick start
 
 ```python
 import json
@@ -52,21 +39,55 @@ response = category.Response.model_validate(data)
 print(response.categories[0].name)  # "Categories"
 ```
 
-## Development
+## Usage
 
-### Running tests
+Each FRED endpoint is exposed as a module at the top level of the `fred` package. Every module provides:
 
-```bash
-# Unit and contract tests (no API key required)
-pytest -m "unit_test or contract_test"
+- `RequestParams` — a typed, validated model for building requests
+- `Response` — a typed, validated model for parsing responses
+- `ENDPOINT` — the API endpoint URL
+- Any enum types needed to construct a request (e.g. `FileType`, `SortOrder`)
 
-# All tests (requires FRED_API_KEY)
-pytest
+Use `for_request` to convert a `RequestParams` instance into a `dict[str, str]` ready for any HTTP client:
+
+```python
+from fred import for_request, releases
+
+params = releases.RequestParams(
+    api_key="your-api-key",
+    file_type=releases.FileType.json,
+)
+
+query = for_request(params)  # {"api_key": "...", "file_type": "json", ...}
 ```
 
-### Pre-commit hooks
+## Available endpoints
 
-[prek](https://prek.j178.dev/) manages hooks. After cloning, hooks are activated automatically via `.git/hooks`. They run:
+### Category
 
-- **Pre-commit**: whitespace/file checks, nix checks (nixfmt, statix, deadnix), Python checks (ruff, ty)
-- **Pre-push**: uv sync
+| Module | Endpoint |
+|--------|----------|
+| `category` | `fred/category` |
+| `category_children` | `fred/category/children` |
+| `category_related` | `fred/category/related` |
+| `category_series` | `fred/category/series` |
+| `category_tags` | `fred/category/tags` |
+| `category_related_tags` | `fred/category/related_tags` |
+
+### Releases
+
+| Module | Endpoint |
+|--------|----------|
+| `releases` | `fred/releases` |
+| `releases_dates` | `fred/releases/dates` |
+| `release` | `fred/release` |
+| `release_dates` | `fred/release/dates` |
+| `release_series` | `fred/release/series` |
+| `release_sources` | `fred/release/sources` |
+| `release_tags` | `fred/release/tags` |
+| `release_related_tags` | `fred/release/related_tags` |
+| `release_tables` | `fred/release/tables` |
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
