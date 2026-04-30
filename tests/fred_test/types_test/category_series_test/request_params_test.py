@@ -65,6 +65,70 @@ def test_accepts_explicit_realtime_end() -> None:
 
 
 @pytest.mark.contract_test
+def test_tag_names_defaults_to_none() -> None:
+    p = RequestParams(
+        api_key=_VALID_API_KEY,
+        file_type=FileType.json,
+        category_id=0,
+    )
+    assert p.tag_names is None
+
+
+@pytest.mark.contract_test
+def test_accepts_tag_names() -> None:
+    p = RequestParams(
+        api_key=_VALID_API_KEY,
+        file_type=FileType.json,
+        category_id=0,
+        tag_names="inflation;gdp",
+    )
+    assert p.tag_names == "inflation;gdp"
+
+
+@pytest.mark.contract_test
+def test_rejects_invalid_tag_names() -> None:
+    with pytest.raises(ValidationError):
+        RequestParams(
+            api_key=_VALID_API_KEY,
+            file_type=FileType.json,
+            category_id=0,
+            tag_names="inflation gdp",
+        )
+
+
+@pytest.mark.contract_test
+def test_exclude_tag_names_defaults_to_none() -> None:
+    p = RequestParams(
+        api_key=_VALID_API_KEY,
+        file_type=FileType.json,
+        category_id=0,
+    )
+    assert p.exclude_tag_names is None
+
+
+@pytest.mark.contract_test
+def test_accepts_exclude_tag_names() -> None:
+    p = RequestParams(
+        api_key=_VALID_API_KEY,
+        file_type=FileType.json,
+        category_id=0,
+        exclude_tag_names="sa;nsa",
+    )
+    assert p.exclude_tag_names == "sa;nsa"
+
+
+@pytest.mark.contract_test
+def test_rejects_invalid_exclude_tag_names() -> None:
+    with pytest.raises(ValidationError):
+        RequestParams(
+            api_key=_VALID_API_KEY,
+            file_type=FileType.json,
+            category_id=0,
+            exclude_tag_names="sa nsa",
+        )
+
+
+@pytest.mark.contract_test
 def test_limit_defaults_to_1000() -> None:
     p = RequestParams(
         api_key=_VALID_API_KEY,

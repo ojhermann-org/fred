@@ -9,6 +9,7 @@ from fred.enums.order_by import CategorySeries as OrderBy
 from fred.functions.today_st_louis import today_st_louis
 from fred.types.api_key import ApiKey
 from fred.types.category_id import CategoryID
+from fred.types.category_tags.tag_names import TagNames
 from fred.types.limit import Limit
 from fred.types.offset import Offset
 from fred.types.realtime import Realtime
@@ -20,6 +21,8 @@ class RequestParams(BaseModel):
     category_id: CategoryID = Field(...)
     realtime_start: Realtime = Field(default_factory=today_st_louis)
     realtime_end: Realtime = Field(default_factory=today_st_louis)
+    tag_names: TagNames = Field(default=None)
+    exclude_tag_names: TagNames = Field(default=None)
     limit: Limit = Field(default=1000)
     offset: Offset = Field(default=0)
     order_by: OrderBy | None = Field(None)
