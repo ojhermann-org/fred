@@ -35,6 +35,16 @@ class Endpoint(StrEnum):
     release_tags = combine(Base.release, "tags")
     releases = Base.releases
     releases_dates = combine(Base.releases, "dates")
+    series = Base.series
+    series_categories = combine(Base.series, "categories")
+    series_observations = combine(Base.series, "observations")
+    series_release = combine(Base.series, "release")
+    series_search = combine(Base.series, "search")
+    series_search_tags = combine(Base.series, "search", "tags")
+    series_search_related_tags = combine(Base.series, "search", "related_tags")
+    series_tags = combine(Base.series, "tags")
+    series_updates = combine(Base.series, "updates")
+    series_vintagedates = combine(Base.series, "vintagedates")
     source = Base.source
     source_releases = combine(Base.source, "releases")
     sources = Base.sources

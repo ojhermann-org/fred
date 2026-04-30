@@ -88,6 +88,21 @@ query = for_request(params)  # {"api_key": "...", "file_type": "json", ...}
 | `release_related_tags` | `fred/release/related_tags` |
 | `release_tables` | `fred/release/tables` |
 
+### Series
+
+| Module | Endpoint |
+|--------|----------|
+| `series` | `fred/series` |
+| `series_categories` | `fred/series/categories` |
+| `series_observations` | `fred/series/observations` |
+| `series_release` | `fred/series/release` |
+| `series_search` | `fred/series/search` |
+| `series_search_tags` | `fred/series/search/tags` |
+| `series_search_related_tags` | `fred/series/search/related_tags` |
+| `series_tags` | `fred/series/tags` |
+| `series_updates` | `fred/series/updates` |
+| `series_vintagedates` | `fred/series/vintagedates` |
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).

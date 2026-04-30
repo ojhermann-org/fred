@@ -103,3 +103,19 @@ class SeriesTags(StrEnum):
     created = auto()
     name = auto()
     group_id = auto()
+
+
+class SeriesSearch(StrEnum):
+    search_rank = auto()
+    series_id = auto()
+    title = auto()
+    units = auto()
+    frequency = auto()
+    seasonal_adjustment = auto()
+    realtime_start = auto()
+    realtime_end = auto()
+    last_updated = auto()
+    observation_start = auto()
+    observation_end = auto()
+    popularity = auto()
+    group_popularity = auto()
