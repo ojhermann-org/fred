@@ -15,6 +15,16 @@ from fred.types import (
     release_tags,
     releases,
     releases_dates,
+    series,
+    series_categories,
+    series_observations,
+    series_release,
+    series_search,
+    series_search_related_tags,
+    series_search_tags,
+    series_tags,
+    series_updates,
+    series_vintagedates,
 )
 
 __all__ = [
@@ -34,4 +44,14 @@ __all__ = [
     "release_tags",
     "releases",
     "releases_dates",
+    "series",
+    "series_categories",
+    "series_observations",
+    "series_release",
+    "series_search",
+    "series_search_related_tags",
+    "series_search_tags",
+    "series_tags",
+    "series_updates",
+    "series_vintagedates",
 ]
