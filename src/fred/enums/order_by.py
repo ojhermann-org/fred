@@ -24,6 +24,14 @@ class CategoryTags(StrEnum):
     group_id = auto()
 
 
+class CategoryRelatedTags(StrEnum):
+    series_count = auto()
+    popularity = auto()
+    created = auto()
+    name = auto()
+    group_id = auto()
+
+
 class Releases(StrEnum):
     release_id = auto()
     name = auto()
