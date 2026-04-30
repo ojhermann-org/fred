@@ -29,6 +29,7 @@ class Endpoint(StrEnum):
     release = Base.release
     release_dates = combine(Base.release, "dates")
     release_series = combine(Base.release, "series")
+    release_sources = combine(Base.release, "sources")
     releases = Base.releases
     releases_dates = combine(Base.releases, "dates")
     source = Base.source

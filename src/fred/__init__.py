@@ -9,6 +9,7 @@ from fred.types import (
     release,
     release_dates,
     release_series,
+    release_sources,
     releases,
     releases_dates,
 )
@@ -24,6 +25,7 @@ __all__ = [
     "release",
     "release_dates",
     "release_series",
+    "release_sources",
     "releases",
     "releases_dates",
 ]
