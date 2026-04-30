@@ -1,6 +1,7 @@
 import pytest
 
 from fred.enums.order_by import (
+    CategoryRelatedTags,
     CategorySeries,
     CategoryTags,
     ReleaseRelatedTags,
@@ -97,6 +98,31 @@ def test_category_tags_name_value() -> None:
 @pytest.mark.contract_test
 def test_category_tags_group_id_value() -> None:
     assert CategoryTags.group_id == "group_id"
+
+
+@pytest.mark.contract_test
+def test_category_related_tags_series_count_value() -> None:
+    assert CategoryRelatedTags.series_count == "series_count"
+
+
+@pytest.mark.contract_test
+def test_category_related_tags_popularity_value() -> None:
+    assert CategoryRelatedTags.popularity == "popularity"
+
+
+@pytest.mark.contract_test
+def test_category_related_tags_created_value() -> None:
+    assert CategoryRelatedTags.created == "created"
+
+
+@pytest.mark.contract_test
+def test_category_related_tags_name_value() -> None:
+    assert CategoryRelatedTags.name == "name"
+
+
+@pytest.mark.contract_test
+def test_category_related_tags_group_id_value() -> None:
+    assert CategoryRelatedTags.group_id == "group_id"
 
 
 @pytest.mark.contract_test

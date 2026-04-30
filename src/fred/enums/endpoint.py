@@ -25,6 +25,7 @@ class Endpoint(StrEnum):
     category_related = combine(Base.category, "related")
     category_series = combine(Base.category, "series")
     category_tags = combine(Base.category, "tags")
+    category_related_tags = combine(Base.category, "related_tags")
     source = Base.source
     source_releases = combine(Base.source, "releases")
     sources = Base.sources
