@@ -1,11 +1,28 @@
 [project]
-name = "fred"
+name = "fred-stl"
 version = "0.1.0"
-description = "A Python library for the FRED API"
+description = "A Python library for the FRED API (Federal Reserve Bank of St. Louis)"
 readme = "README.md"
 authors = [{ name = "Otto Hermann", email = "ojhermann@gmail.com" }]
 requires-python = ">=3.13"
 dependencies = ["pydantic>=2.12.5"]
+license = "MIT"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business :: Financial",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/ojhermann-org/fred"
+Repository = "https://github.com/ojhermann-org/fred"
+Issues = "https://github.com/ojhermann-org/fred/issues"
 
 [build-system]
 requires = ["uv_build>=0.10.12,<0.12.0"]
