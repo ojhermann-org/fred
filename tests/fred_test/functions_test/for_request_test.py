@@ -21,6 +21,11 @@ class _WithInt(BaseModel):
     b: str
 
 
+class _WithBool(BaseModel):
+    a: bool
+    b: str
+
+
 @pytest.mark.unit_test
 def test_returns_all_fields_as_strings() -> None:
     assert for_request(_AllStrings(a="x", b="y")) == {"a": "x", "b": "y"}
@@ -39,6 +44,16 @@ def test_includes_non_none_optional_fields() -> None:
 @pytest.mark.unit_test
 def test_converts_non_string_values_to_strings() -> None:
     assert for_request(_WithInt(a=42, b="z")) == {"a": "42", "b": "z"}
+
+
+@pytest.mark.unit_test
+def test_converts_true_to_lowercase_string() -> None:
+    assert for_request(_WithBool(a=True, b="z")) == {"a": "true", "b": "z"}
+
+
+@pytest.mark.unit_test
+def test_converts_false_to_lowercase_string() -> None:
+    assert for_request(_WithBool(a=False, b="z")) == {"a": "false", "b": "z"}
 
 
 @pytest.mark.unit_test
