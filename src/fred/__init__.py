@@ -8,6 +8,7 @@ from fred.types import (
     category_tags,
     release,
     release_dates,
+    release_series,
     releases,
     releases_dates,
 )
@@ -22,6 +23,7 @@ __all__ = [
     "for_request",
     "release",
     "release_dates",
+    "release_series",
     "releases",
     "releases_dates",
 ]
