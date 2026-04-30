@@ -63,7 +63,7 @@ prek hooks run automatically. Pre-commit checks: builtins, nix (nixfmt, statix, 
 - `FRED_API_KEY` is stored in AWS Secrets Manager in the `otto-dev` account under the secret name `fred/api-key`
 - Contributors need an AWS SSO profile with `secretsmanager:GetSecretValue` access to that secret
 - `.env.local` (gitignored) is where each contributor sets their `AWS_PROFILE`
-- CI uses GitHub Actions OIDC to assume an IAM role in the `otto-dev` account and fetch the secret — **this is not yet wired up**; for now, integration tests are skipped in CI
+- CI uses GitHub Actions OIDC to assume an IAM role in the `otto-dev` account and fetch the secret — integration tests run in CI
 
 ## Testing
 
