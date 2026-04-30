@@ -5,6 +5,7 @@ from fred.types import (
     category_related_tags,
     category_series,
     category_tags,
+    releases,
 )
 
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "category_related_tags",
     "category_series",
     "category_tags",
+    "releases",
 ]
