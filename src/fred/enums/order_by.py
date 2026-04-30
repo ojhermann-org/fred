@@ -40,6 +40,10 @@ class Releases(StrEnum):
     realtime_end = auto()
 
 
+class ReleaseDates(StrEnum):
+    release_date = auto()
+
+
 class ReleasesDates(StrEnum):
     release_date = auto()
     release_id = auto()
