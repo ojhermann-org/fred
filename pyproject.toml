@@ -1,6 +1,6 @@
 [project]
 name = "fred-stl"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python library for the FRED API (Federal Reserve Bank of St. Louis)"
 readme = "README.md"
 authors = [{ name = "Otto Hermann", email = "ojhermann@gmail.com" }]
@@ -58,3 +58,18 @@ default-groups = ["dev"]
 
 [tool.uv.build-backend]
 module-name = "fred"
+source-include = ["LICENSE", "README.md", "pyproject.toml"]
+exclude = [
+  "CLAUDE.md",
+  "CODEOWNERS",
+  "flake.lock",
+  "flake.nix",
+  "prek.toml",
+  "uv.lock",
+  "dist/",
+  "tests/",
+  "tofu/",
+  ".env*",
+  ".github/",
+  ".helix/",
+]
