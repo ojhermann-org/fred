@@ -26,6 +26,13 @@ class Endpoint(StrEnum):
     category_series = combine(Base.category, "series")
     category_tags = combine(Base.category, "tags")
     category_related_tags = combine(Base.category, "related_tags")
+    release = Base.release
+    release_dates = combine(Base.release, "dates")
+    release_series = combine(Base.release, "series")
+    release_sources = combine(Base.release, "sources")
+    release_related_tags = combine(Base.release, "related_tags")
+    release_tables = combine(Base.release, "tables")
+    release_tags = combine(Base.release, "tags")
     releases = Base.releases
     releases_dates = combine(Base.releases, "dates")
     source = Base.source
