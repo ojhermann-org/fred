@@ -95,7 +95,7 @@ wheels = [
 ]
 
 [[package]]
-name = "fred"
+name = "fred-stl"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
