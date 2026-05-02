@@ -86,7 +86,7 @@ def test_rejects_invalid_exclude_tag_names() -> None:
             file_type=FileType.json,
             category_id=125,
             tag_names="services",
-            exclude_tag_names="goods sa",
+            exclude_tag_names="goods;",
         )
 
 

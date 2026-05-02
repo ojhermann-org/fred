@@ -102,7 +102,7 @@ def test_rejects_invalid_tag_names() -> None:
             api_key=_VALID_API_KEY,
             file_type=FileType.json,
             category_id=0,
-            tag_names="inflation gdp",
+            tag_names="inflation;",
         )
 
 

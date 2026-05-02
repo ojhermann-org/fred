@@ -3,7 +3,7 @@ import pytest
 from fred import for_request, tags_related
 from tests.integration_test.conftest import FredGetJson, FredGetXml
 
-_TAG_NAMES = "monetary+aggregates;weekly"
+_TAG_NAMES = "monetary aggregates;weekly"
 
 
 @pytest.mark.integration_test
