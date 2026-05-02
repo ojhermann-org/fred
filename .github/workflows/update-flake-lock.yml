@@ -25,16 +25,24 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git checkout -b update-flake-lock-$(date +%Y%m%d)
-            git add flake.lock
-            git commit -m "chore: update flake.lock"
+
+            CURRENT=$(python3 -c "
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+              print(tomllib.load(f)['project']['version'])
+          ")
+            MAJOR=$(echo "$CURRENT" | cut -d. -f1)
+            MINOR=$(echo "$CURRENT" | cut -d. -f2)
+            PATCH=$(echo "$CURRENT" | cut -d. -f3)
+            NEW_VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
+            sed -i "s/^version = \"$CURRENT\"/version = \"$NEW_VERSION\"/" pyproject.toml
+
+            git add flake.lock pyproject.toml
+            git commit -m "chore: update flake.lock; bump to $NEW_VERSION"
             git push -u origin HEAD --force
-            gh api repos/${{ github.repository }}/statuses/$(git rev-parse HEAD) \
-              -f state=success \
-              -f context=ci \
-              -f description="flake.lock update only"
             gh pr create \
-              --title "chore: update flake.lock" \
-              --body "Automated daily flake.lock update."
+              --title "chore: update flake.lock; bump to $NEW_VERSION" \
+              --body "Automated daily flake.lock update with patch version bump."
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
