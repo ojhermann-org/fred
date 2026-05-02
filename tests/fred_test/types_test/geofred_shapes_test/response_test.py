@@ -78,6 +78,15 @@ def test_accepts_null_properties() -> None:
 
 
 @pytest.mark.contract_test
+def test_coerces_empty_list_properties_to_none() -> None:
+    # FRED sends [] instead of null for features with no properties
+    r = geofred_shapes.Response.model_validate(
+        _valid_response(features=[_valid_feature(properties=[])])
+    )
+    assert r.features[0].properties is None
+
+
+@pytest.mark.contract_test
 def test_rejects_missing_name() -> None:
     with pytest.raises(ValidationError):
         data = _valid_response()
