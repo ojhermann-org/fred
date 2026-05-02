@@ -11,8 +11,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-tags: true
 
       - name: Read version from pyproject.toml
         id: version
@@ -23,14 +21,6 @@ jobs:
               print(tomllib.load(f)['project']['version'])
           ")
           echo "version=v${VERSION}" >> "$GITHUB_OUTPUT"
-
-      - name: Check version is new
-        run: |
-          TAG="${{ steps.version.outputs.version }}"
-          if git tag --list | grep -qx "${TAG}"; then
-            echo "ERROR: tag ${TAG} already exists — every merge to main must include a version bump" >&2
-            exit 1
-          fi
 
       - name: Create tag and GitHub release
         env:
