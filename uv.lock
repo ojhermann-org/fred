@@ -96,9 +96,10 @@ wheels = [
 
 [[package]]
 name = "fred-stl"
-version = "0.5.0"
+version = "0.6.0"
 source = { editable = "." }
 dependencies = [
+    { name = "geojson-pydantic" },
     { name = "pydantic" },
 ]
 
@@ -112,7 +113,10 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pydantic", specifier = ">=2.12.5" }]
+requires-dist = [
+    { name = "geojson-pydantic", specifier = ">=2.1.1" },
+    { name = "pydantic", specifier = ">=2.12.5" },
+]
 
 [package.metadata.requires-dev]
 dev = [
@@ -121,6 +125,18 @@ dev = [
     { name = "python-lsp-server", specifier = ">=1.14.0" },
     { name = "ruff", specifier = ">=0.15.7" },
     { name = "ty", specifier = ">=0.0.24" },
+]
+
+[[package]]
+name = "geojson-pydantic"
+version = "2.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d9/76/77c6f2e608028a2885e4d9d9a28cb6801879972d4bb3106c1dca02201df6/geojson_pydantic-2.1.1.tar.gz", hash = "sha256:3b64fa2dcd98108ff8a19bfb01eee3dab41bc230be2481804aefd7c1659d1c23", size = 8156, upload-time = "2026-04-07T09:48:07.252Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/95/97/d59d999f00aec90fc7a4efb742fc11e6c160552aa1b313438d3497998644/geojson_pydantic-2.1.1-py3-none-any.whl", hash = "sha256:55354f22ededc3c070e3210fec6f518d784b65c4368c1763f2c6dc4bab79b898", size = 9456, upload-time = "2026-04-07T09:48:05.772Z" },
 ]
 
 [[package]]
