@@ -75,7 +75,7 @@ def test_rejects_invalid_tag_names() -> None:
             api_key=_VALID_API_KEY,
             file_type=FileType.json,
             release_id=_VALID_RELEASE_ID,
-            tag_names="gnp quarterly",
+            tag_names="gnp;",
         )
 
 

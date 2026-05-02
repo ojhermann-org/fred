@@ -78,7 +78,7 @@ def test_rejects_invalid_exclude_tag_names() -> None:
             file_type=FileType.json,
             release_id=_VALID_RELEASE_ID,
             tag_names=_VALID_TAG_NAMES,
-            exclude_tag_names="monthly financial",
+            exclude_tag_names="monthly;",
         )
 
 
@@ -231,7 +231,7 @@ def test_rejects_invalid_tag_names() -> None:
             api_key=_VALID_API_KEY,
             file_type=FileType.json,
             release_id=_VALID_RELEASE_ID,
-            tag_names="sa foreign",
+            tag_names="inflation;",
         )
 
 

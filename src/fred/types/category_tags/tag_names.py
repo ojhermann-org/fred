@@ -1,12 +1,14 @@
-import re
 from typing import Annotated
 
 from pydantic import BeforeValidator
 
 
 def validate_semicolon_separated(v: str) -> str:
-    if not re.fullmatch(r"[^\s;:]+(?:;[^\s;:]+)*", v):
-        raise ValueError("must be non-whitespace strings separated by semicolons")
+    parts = v.split(";")
+    if not parts or any(not p or p != p.strip() or ":" in p for p in parts):
+        raise ValueError(
+            "must be non-empty strings without leading/trailing whitespace, separated by semicolons"
+        )
     return v
 
 

@@ -29,6 +29,19 @@ def test_accepts_single_string_no_semicolon() -> None:
 
 
 @pytest.mark.contract_test
+def test_accepts_tag_name_with_internal_space() -> None:
+    assert _adapter.validate_python("monetary aggregates") == "monetary aggregates"
+
+
+@pytest.mark.contract_test
+def test_accepts_semicolon_separated_with_internal_spaces() -> None:
+    assert (
+        _adapter.validate_python("monetary aggregates;weekly")
+        == "monetary aggregates;weekly"
+    )
+
+
+@pytest.mark.contract_test
 def test_rejects_colon_separated() -> None:
     with pytest.raises(ValidationError):
         _adapter.validate_python("inflation:gdp")
