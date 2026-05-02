@@ -119,6 +119,13 @@ query = for_request(params)  # {"api_key": "...", "file_type": "json", ...}
 | `tags_related` | `fred/related_tags` |
 | `tags_series` | `fred/tags/series` |
 
+
+### Maps (GeoFRED)
+
+| Module | Endpoint |
+|--------|----------|
+| `geofred_shapes` | `geofred/shapes/file` |
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).

@@ -6,6 +6,7 @@ def combine(base: str, *args: str | None) -> str:
 
 
 ENDPOINT_BASE: str = "https://api.stlouisfed.org/fred"
+GEOFRED_BASE: str = "https://api.stlouisfed.org/geofred"
 
 
 class Base(StrEnum):
@@ -51,3 +52,4 @@ class Endpoint(StrEnum):
     tags = Base.tags
     tags_related = Base.tags_related
     tags_series = combine(Base.tags, "series")
+    geofred_shapes_file = combine(GEOFRED_BASE, "shapes", "file")
