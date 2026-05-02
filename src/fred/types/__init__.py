@@ -24,6 +24,9 @@ from fred.types import (
     series_tags,
     series_updates,
     series_vintagedates,
+    source,
+    source_releases,
+    sources,
 )
 
 __all__ = [
@@ -52,4 +55,7 @@ __all__ = [
     "series_tags",
     "series_updates",
     "series_vintagedates",
+    "source",
+    "source_releases",
+    "sources",
 ]

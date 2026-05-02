@@ -1,0 +1,19 @@
+from pydantic import BaseModel
+
+from fred.enums.order_by import Sources as OrderBy
+from fred.enums.sort_order import SortOrder
+from fred.types.limit import Limit
+from fred.types.offset import Offset
+from fred.types.realtime import Realtime
+from fred.types.release_sources.source import Source
+
+
+class Response(BaseModel):
+    realtime_start: Realtime
+    realtime_end: Realtime
+    order_by: OrderBy
+    sort_order: SortOrder
+    count: int
+    offset: Offset
+    limit: Limit
+    sources: list[Source]

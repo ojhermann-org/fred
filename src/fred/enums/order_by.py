@@ -119,3 +119,18 @@ class SeriesSearch(StrEnum):
     observation_end = auto()
     popularity = auto()
     group_popularity = auto()
+
+
+class Sources(StrEnum):
+    source_id = auto()
+    name = auto()
+    realtime_start = auto()
+    realtime_end = auto()
+
+
+class SourceReleases(StrEnum):
+    release_id = auto()
+    name = auto()
+    press_release = auto()
+    realtime_start = auto()
+    realtime_end = auto()

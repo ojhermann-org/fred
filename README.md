@@ -103,6 +103,14 @@ query = for_request(params)  # {"api_key": "...", "file_type": "json", ...}
 | `series_updates` | `fred/series/updates` |
 | `series_vintagedates` | `fred/series/vintagedates` |
 
+### Sources
+
+| Module | Endpoint |
+|--------|----------|
+| `sources` | `fred/sources` |
+| `source` | `fred/source` |
+| `source_releases` | `fred/source/releases` |
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
