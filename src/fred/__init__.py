@@ -28,6 +28,9 @@ from fred.types import (
     source,
     source_releases,
     sources,
+    tags,
+    tags_related,
+    tags_series,
 )
 
 __all__ = [
@@ -60,4 +63,7 @@ __all__ = [
     "source",
     "source_releases",
     "sources",
+    "tags",
+    "tags_related",
+    "tags_series",
 ]

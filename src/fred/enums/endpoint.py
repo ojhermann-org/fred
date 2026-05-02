@@ -48,3 +48,6 @@ class Endpoint(StrEnum):
     source = Base.source
     source_releases = combine(Base.source, "releases")
     sources = Base.sources
+    tags = Base.tags
+    tags_related = Base.tags_related
+    tags_series = combine(Base.tags, "series")

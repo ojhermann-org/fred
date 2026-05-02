@@ -111,6 +111,14 @@ query = for_request(params)  # {"api_key": "...", "file_type": "json", ...}
 | `source` | `fred/source` |
 | `source_releases` | `fred/source/releases` |
 
+### Tags
+
+| Module | Endpoint |
+|--------|----------|
+| `tags` | `fred/tags` |
+| `tags_related` | `fred/related_tags` |
+| `tags_series` | `fred/tags/series` |
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
