@@ -55,3 +55,4 @@ class Endpoint(StrEnum):
     geofred_shapes_file = combine(GEOFRED_BASE, "shapes", "file")
     geofred_series_group = combine(GEOFRED_BASE, "series", "group")
     geofred_series_data = combine(GEOFRED_BASE, "series", "data")
+    geofred_regional_data = combine(GEOFRED_BASE, "regional", "data")
