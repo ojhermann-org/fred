@@ -22,8 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-tags: true
       - name: Verify version is not already tagged
         run: |
           VERSION=$(python3 -c "
@@ -32,7 +30,10 @@ jobs:
               print(tomllib.load(f)['project']['version'])
           ")
           TAG="v${VERSION}"
-          if git tag --list | grep -qx "${TAG}"; then
+          # Query the remote directly. `git tag --list` against the local
+          # checkout (even with fetch-tags) is unreliable on shallow clones
+          # and silently returns no matches, falsely passing the check.
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
             echo "ERROR: tag ${TAG} already exists — this PR must include a version bump" >&2
             exit 1
           fi
