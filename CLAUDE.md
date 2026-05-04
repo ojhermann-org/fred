@@ -34,36 +34,35 @@ Per-endpoint models live under `fred.types.<group>.<endpoint>/`: `request_params
 
 ## Tech stack
 
-- **Nix flakes**: manages high-level dev dependencies (uv, prek, helix LSPs, awscli2, etc.)
+- **Nix flakes**: manages high-level dev dependencies (uv, prek, helix LSPs, etc.)
 - **uv**: manages Python dependencies (`pyproject.toml`), lib layout (`src/`)
-- **direnv**: activates the nix dev shell and loads secrets automatically on `cd`
+- **direnv**: activates the nix dev shell and loads `.env.local` automatically on `cd`
 - **prek**: pre-commit and pre-push hooks
 
 ## Development workflow
 
 Enter the dev environment by `cd`-ing into the repo — direnv activates everything automatically via `.envrc`. You must have:
 - `direnv` installed and hooked into your shell
-- An AWS SSO profile set in `.env.local` (see below)
+- A FRED API key in `.env.local` (see below)
 
 ### First-time setup
 
-1. Copy `.env.local.example` (or create `.env.local`) and set your AWS profile:
+1. Get a FRED API key from <https://fred.stlouisfed.org/docs/api/api_key.html> (free, no credit card)
+2. Copy `.env.local.example` to `.env.local` and set the key:
    ```
-   export AWS_PROFILE=<your-aws-sso-profile>
+   export FRED_API_KEY=<your-fred-api-key>
    ```
-2. Log in to AWS SSO: `aws sso login`
 3. `cd` into the repo — direnv will run `uv sync`, activate the venv, and export `FRED_API_KEY`
 
 ### Commits and pushes
 
 prek hooks run automatically. Pre-commit checks: builtins, nix (nixfmt, statix, deadnix), Python (ruff, ty). Pre-push: uv sync.
 
-## AWS and secrets
+## Secrets
 
-- `FRED_API_KEY` is stored in AWS Secrets Manager in the `otto-dev` account under the secret name `fred/api-key`
-- Contributors need an AWS SSO profile with `secretsmanager:GetSecretValue` access to that secret
-- `.env.local` (gitignored) is where each contributor sets their `AWS_PROFILE`
-- CI uses GitHub Actions OIDC to assume an IAM role in the `otto-dev` account and fetch the secret — integration tests run in CI
+- `FRED_API_KEY` is required for integration tests and any local use of the live API
+- Locally: set it in `.env.local` (gitignored); direnv exports it
+- CI: stored as a GitHub Actions environment secret on the `integration` environment, gated by admin-team reviewer approval
 
 ## Testing
 
