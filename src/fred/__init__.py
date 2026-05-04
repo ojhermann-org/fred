@@ -6,6 +6,7 @@ from fred.types import (
     category_related_tags,
     category_series,
     category_tags,
+    geofred_series_data,
     geofred_series_group,
     geofred_shapes,
     release,
@@ -37,6 +38,7 @@ from fred.types import (
 
 __all__ = [
     "category",
+    "geofred_series_data",
     "geofred_series_group",
     "geofred_shapes",
     "category_children",
