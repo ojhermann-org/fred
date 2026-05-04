@@ -54,3 +54,4 @@ class Endpoint(StrEnum):
     tags_series = combine(Base.tags, "series")
     geofred_shapes_file = combine(GEOFRED_BASE, "shapes", "file")
     geofred_series_group = combine(GEOFRED_BASE, "series", "group")
+    geofred_series_data = combine(GEOFRED_BASE, "series", "data")
