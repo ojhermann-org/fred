@@ -74,9 +74,6 @@ jobs:
     needs: [python-checks]
     runs-on: ubuntu-latest
     environment: integration
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -85,14 +82,9 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: us-east-1
-      - name: Fetch FRED API key
-        run: |
-          echo "FRED_API_KEY=$(aws secretsmanager get-secret-value --secret-id fred/api-key --query SecretString --output text)" >> $GITHUB_ENV
       - name: Run integration tests
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: uv run pytest -m integration_test
 
   ci:

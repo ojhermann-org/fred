@@ -28,7 +28,6 @@
         {
           default = pkgs.mkShell {
             packages = [
-              pkgs.awscli2
               pkgs.bash
               pkgs.claude-code
               pkgs.deadnix
