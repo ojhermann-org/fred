@@ -16,3 +16,8 @@ def test_sa_value() -> None:
 @pytest.mark.contract_test
 def test_saar_value() -> None:
     assert SeasonalAdjustmentShort.saar == "SAAR"
+
+
+@pytest.mark.contract_test
+def test_ssa_value() -> None:
+    assert SeasonalAdjustmentShort.ssa == "SSA"
