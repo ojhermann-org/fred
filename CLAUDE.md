@@ -81,3 +81,5 @@ Each subpackage exposes a minimal public API via its `__init__.py`. Implementati
 ## Git workflow
 
 All changes on a branch, merged via PR. See global `~/.claude/CLAUDE.md` for org-wide conventions.
+
+Before creating a PR, ask the user whether documentation (README, CLAUDE.md, examples, etc.) should be updated to reflect the change.

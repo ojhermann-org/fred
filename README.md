@@ -125,6 +125,9 @@ query = for_request(params)  # {"api_key": "...", "file_type": "json", ...}
 | Module | Endpoint |
 |--------|----------|
 | `geofred_shapes` | `geofred/shapes/file` |
+| `geofred_series_group` | `geofred/series/group` |
+| `geofred_series_data` | `geofred/series/data` |
+| `geofred_regional_data` | `geofred/regional/data` |
 
 ## Contributing
 
