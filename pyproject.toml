@@ -1,6 +1,6 @@
 [project]
 name = "fred-stl"
-version = "0.9.3"
+version = "0.9.4"
 description = "A Python library for the FRED API (Federal Reserve Bank of St. Louis)"
 readme = "README.md"
 authors = [{ name = "Otto Hermann", email = "ojhermann@gmail.com" }]
