@@ -2,8 +2,6 @@
 
 A Python library for the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) (Federal Reserve Economic Data, St. Louis Fed).
 
-> **Work in progress** — the library is being built incrementally. New endpoint groups are added with each minor release.
-
 ## Installation
 
 ```bash
