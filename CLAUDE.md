@@ -58,6 +58,8 @@ Enter the dev environment by `cd`-ing into the repo — direnv activates everyth
 
 prek hooks run automatically. Pre-commit checks: builtins, nix (nixfmt, statix, deadnix), Python (ruff, ty). Pre-push: uv sync.
 
+`prek.toml` is generated from `nix/code-quality-tools/*.nix` via `nix run .#sync-prek` — edit the Nix files (or `nix/prek-toml.nix` for the top-level config), then regenerate. The `prek-toml-up-to-date` hook fails commits where the TOML has drifted from the Nix sources.
+
 ## Secrets
 
 - `FRED_API_KEY` is required for integration tests and any local use of the live API
