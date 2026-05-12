@@ -4,20 +4,6 @@ on:
   pull_request:
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      nix: ${{ steps.filter.outputs.nix }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            nix:
-              - '**/*.nix'
-              - 'flake.lock'
-
   version-check:
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +25,39 @@ jobs:
           fi
           echo "Version ${TAG} is new — OK"
 
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      nix: ${{ steps.filter.outputs.nix }}
+      python: ${{ steps.filter.outputs.python }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            nix:
+              - '**/*.nix'
+              - 'flake.lock'
+            python:
+              - '**/*.py'
+              - 'pyproject.toml'
+              - 'uv.lock'
+
+  nix-checks:
+    needs: [version-check, changes]
+    if: needs.changes.outputs.nix == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
+      - name: Run Nix and prek checks
+        run: nix develop --command bash -c "uv sync && source .venv/bin/activate && prek run --all-files"
+
   python-checks:
+    needs: [version-check, changes]
+    if: needs.changes.outputs.python == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,18 +78,7 @@ jobs:
       - name: pytest unit and contract tests
         run: uv run pytest -m "unit_test or contract_test"
 
-  nix-checks:
-    needs: [changes]
-    if: needs.changes.outputs.nix == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v16
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
-      - name: Run Nix and prek checks
-        run: nix develop --command bash -c "uv sync && source .venv/bin/activate && prek run --all-files"
-
-  integration_tests:
+  integration-tests:
     needs: [python-checks]
     runs-on: ubuntu-latest
     environment: integration
@@ -89,7 +96,7 @@ jobs:
         run: uv run pytest -m integration_test
 
   ci:
-    needs: [version-check, python-checks, nix-checks, integration_tests]
+    needs: [version-check, nix-checks, python-checks, integration-tests]
     runs-on: ubuntu-latest
     if: always()
     steps:
