@@ -39,7 +39,9 @@ pytest
 
 ## Pre-commit hooks
 
-[prek](https://github.com/j178/prek) manages hooks. Run `prek install` after cloning to activate them.
+[prek](https://github.com/j178/prek) manages hooks. They install automatically the first time you enter the dev shell.
+
+`prek.toml` is generated from `nix/code-quality-tools/*.nix` via `nix run .#sync-prek`. To change hooks, edit the Nix files and regenerate — do not hand-edit `prek.toml`. A `prek-toml-up-to-date` hook fails commits where the two have drifted.
 
 - **Pre-commit**: whitespace/file checks, Nix checks (nixfmt, statix, deadnix), Python checks (ruff, ty), unit and contract tests
 - **Pre-push**: `uv sync`

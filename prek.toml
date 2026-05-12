@@ -2,52 +2,129 @@ default_install_hook_types = ["pre-commit", "pre-push"]
 
 [[repos]]
 repo = "builtin"
-hooks = [
-  { id = "no-commit-to-branch" },
-  { id = "trailing-whitespace" },
-  { id = "end-of-file-fixer" },
-  { id = "check-merge-conflict" },
-  { id = "check-toml" },
-  { id = "check-yaml" },
-  { id = "check-json" },
-  { id = "check-xml" },
-  { id = "check-added-large-files" },
-  { id = "check-case-conflict" },
-  { id = "detect-private-key" },
-]
+[[repos.hooks]]
+id = "no-commit-to-branch"
+
+[[repos.hooks]]
+id = "trailing-whitespace"
+
+[[repos.hooks]]
+id = "end-of-file-fixer"
+
+[[repos.hooks]]
+id = "check-merge-conflict"
+
+[[repos.hooks]]
+id = "check-toml"
+
+[[repos.hooks]]
+id = "check-yaml"
+
+[[repos.hooks]]
+id = "check-json"
+
+[[repos.hooks]]
+id = "check-xml"
+
+[[repos.hooks]]
+id = "check-added-large-files"
+
+[[repos.hooks]]
+id = "check-case-conflict"
+
+[[repos.hooks]]
+id = "detect-private-key"
 
 [[repos]]
 repo = "local"
-hooks = [
-  { id = "prek-validate-config", name = "prek validate-config", language = "system", entry = "prek validate-config", pass_filenames = false, files = "prek\\.toml$" },
-  { id = "nix-flake-check", name = "nix flake check", language = "system", entry = "nix flake check", pass_filenames = false, types = [
-    "nix",
-  ] },
-  { id = "nixfmt", name = "nixfmt", language = "system", entry = "nixfmt", types = [
-    "nix",
-  ] },
-  { id = "statix", name = "statix", language = "system", entry = "statix check", pass_filenames = false, types = [
-    "nix",
-  ] },
-  { id = "deadnix", name = "deadnix", language = "system", entry = "deadnix --fail", types = [
-    "nix",
-  ] },
-  { id = "ruff-check", name = "ruff check", language = "system", entry = "ruff check", types = [
-    "python",
-  ] },
-  { id = "ruff-format", name = "ruff format", language = "system", entry = "ruff format", types = [
-    "python",
-  ] },
-  { id = "ty-check", name = "ty check", language = "system", entry = "ty check", pass_filenames = false, types = [
-    "python",
-  ] },
-{ id = "pytest-unit", name = "pytest unit tests", language = "system", entry = "pytest -m unit_test", pass_filenames = false, types = [
-    "python",
-  ] },
-  { id = "pytest-contract", name = "pytest contract tests", language = "system", entry = "pytest -m contract_test", pass_filenames = false, types = [
-    "python",
-  ] },
-  { id = "uv-sync", name = "uv sync", language = "system", entry = "uv sync", pass_filenames = false, stages = [
-    "pre-push",
-  ] },
-]
+[[repos.hooks]]
+entry = "nix flake check"
+id = "nix-flake-check"
+language = "system"
+name = "nix-flake-check"
+pass_filenames = false
+types = ["nix"]
+
+[[repos.hooks]]
+entry = "nixfmt"
+id = "nixfmt"
+language = "system"
+name = "nixfmt"
+types = ["nix"]
+
+[[repos.hooks]]
+entry = "statix check"
+id = "statix"
+language = "system"
+name = "statix"
+pass_filenames = false
+types = ["nix"]
+
+[[repos.hooks]]
+entry = "deadnix --fail"
+id = "deadnix"
+language = "system"
+name = "deadnix"
+types = ["nix"]
+
+[[repos.hooks]]
+entry = "prek validate-config"
+files = "prek\\.toml$"
+id = "prek-validate-config"
+language = "system"
+name = "prek validate-config"
+pass_filenames = false
+
+[[repos.hooks]]
+entry = "ruff check"
+id = "ruff-check"
+language = "system"
+name = "ruff-check"
+types = ["python"]
+
+[[repos.hooks]]
+entry = "ruff format"
+id = "ruff-format"
+language = "system"
+name = "ruff-format"
+types = ["python"]
+
+[[repos.hooks]]
+entry = "ty check"
+id = "ty-check"
+language = "system"
+name = "ty-check"
+pass_filenames = false
+types = ["python"]
+
+[[repos.hooks]]
+entry = "pytest -m unit_test"
+id = "pytest-unit"
+language = "system"
+name = "pytest unit tests"
+pass_filenames = false
+types = ["python"]
+
+[[repos.hooks]]
+entry = "pytest -m contract_test"
+id = "pytest-contract"
+language = "system"
+name = "pytest contract tests"
+pass_filenames = false
+types = ["python"]
+
+[[repos.hooks]]
+entry = "uv sync"
+id = "uv-sync"
+language = "system"
+name = "uv-sync"
+pass_filenames = false
+stages = ["pre-push"]
+
+[[repos.hooks]]
+entry = "sh -c 'nix run .#sync-prek && git diff --exit-code prek.toml'"
+files = "^(prek\\.toml|nix/code-quality-tools/.*\\.nix|flake\\.nix|nix/prek-toml\\.nix)$"
+id = "prek-toml-up-to-date"
+language = "system"
+name = "prek-toml-up-to-date"
+pass_filenames = false
