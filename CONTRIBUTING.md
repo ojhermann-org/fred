@@ -8,17 +8,16 @@ This project uses [Nix](https://nixos.org/) flakes, [uv](https://docs.astral.sh/
 
 - Nix with flakes enabled
 - direnv hooked into your shell
-- An AWS SSO profile with `secretsmanager:GetSecretValue` access to the `fred/api-key` secret in the `otto-dev` account
+- A FRED API key (free, no credit card) from <https://fred.stlouisfed.org/docs/api/api_key.html>
 
 ### First-time setup
 
 1. Clone the repo and `cd` into it
-2. Create `.env.local` and set your AWS profile:
+2. Copy `.env.local.example` to `.env.local` and set your key:
    ```bash
-   export AWS_PROFILE=<your-aws-sso-profile>
+   export FRED_API_KEY=<your-fred-api-key>
    ```
-3. Log in to AWS: `aws sso login`
-4. Allow direnv: `direnv allow`
+3. Allow direnv: `direnv allow`
 
 direnv activates the Nix dev shell, runs `uv sync`, activates the Python venv, and exports `FRED_API_KEY` automatically.
 
