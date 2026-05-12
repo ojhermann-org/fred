@@ -34,3 +34,5 @@ tofu/.terraform/
 
 # Claude Code
 .claude/projects/
+.claude/scheduled_tasks.lock
+.claude/settings.local.json
