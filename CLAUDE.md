@@ -64,7 +64,7 @@ prek hooks run automatically. Pre-commit checks: builtins, nix (nixfmt, statix, 
 
 - `FRED_API_KEY` is required for integration tests and any local use of the live API
 - Locally: set it in `.env.local` (gitignored); direnv exports it
-- CI: stored as a GitHub Actions environment secret on the `integration` environment, gated by admin-team reviewer approval
+- CI: stored as a GitHub Actions environment secret on the `integration` environment
 
 ## Testing
 
