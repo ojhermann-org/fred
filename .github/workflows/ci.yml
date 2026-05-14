@@ -7,7 +7,7 @@ jobs:
   version-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Verify version is not already tagged
         run: |
           VERSION=$(python3 -c "
@@ -31,7 +31,7 @@ jobs:
       nix: ${{ steps.filter.outputs.nix }}
       python: ${{ steps.filter.outputs.python }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dorny/paths-filter@v3
         id: filter
         with:
@@ -49,7 +49,7 @@ jobs:
     if: needs.changes.outputs.nix == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: DeterminateSystems/nix-installer-action@v16
       - uses: DeterminateSystems/magic-nix-cache-action@v8
       - name: Run Nix and prek checks
@@ -60,11 +60,11 @@ jobs:
     if: needs.changes.outputs.python == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.14"
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v8.1.0
         with:
           enable-cache: true
       - name: Install dependencies
@@ -83,11 +83,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: integration
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.14"
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v8.1.0
         with:
           enable-cache: true
       - name: Run integration tests
